@@ -13,6 +13,7 @@ public class Comentario {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_comentario;
 	private String texto;
+	private int id_requerimiento;
 	private Date fecha_ingreso;
 	private int id_usuario;
 	
@@ -20,10 +21,11 @@ public class Comentario {
 		
 	}
 
-	public Comentario(int id_comentario, String texto, Date fecha_ingreso, int id_usuario) {
+	public Comentario(int id_comentario, String texto, int id_requerimiento, Date fecha_ingreso, int id_usuario) {
 		super();
 		this.id_comentario = id_comentario;
 		this.texto = texto;
+		this.id_requerimiento = id_requerimiento;
 		this.fecha_ingreso = fecha_ingreso;
 		this.id_usuario = id_usuario;
 	}
@@ -44,6 +46,14 @@ public class Comentario {
 		this.texto = texto;
 	}
 
+	public int getId_requerimiento() {
+		return id_requerimiento;
+	}
+
+	public void setId_requerimiento(int id_requerimiento) {
+		this.id_requerimiento = id_requerimiento;
+	}
+
 	public Date getFecha_ingreso() {
 		return fecha_ingreso;
 	}
@@ -59,6 +69,5 @@ public class Comentario {
 	public void setId_usuario(int id_usuario) {
 		this.id_usuario = id_usuario;
 	}
-	
 	
 }
