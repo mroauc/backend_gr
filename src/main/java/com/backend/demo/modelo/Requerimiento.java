@@ -17,7 +17,7 @@ public class Requerimiento {
 	private int id_usuario;
 	private int id_subProyecto;
 	private Date created_at;
-	private int prioridad;
+	private String prioridad;
 	private String estado;
 	private String categoria;
 	private int id_template;
@@ -27,7 +27,7 @@ public class Requerimiento {
 	}
 
 	public Requerimiento(int id_requerimiento, String descripcion, int id_usuario, int id_subProyecto, Date created_at,
-			int prioridad, String estado, String categoria, int id_template) {
+			String prioridad, String estado, String categoria, int id_template) {
 		super();
 		this.id_requerimiento = id_requerimiento;
 		this.descripcion = descripcion;
@@ -80,11 +80,11 @@ public class Requerimiento {
 		this.created_at = created_at;
 	}
 
-	public int getPrioridad() {
+	public String getPrioridad() {
 		return prioridad;
 	}
 
-	public void setPrioridad(int prioridad) {
+	public void setPrioridad(String prioridad) {
 		this.prioridad = prioridad;
 	}
 
