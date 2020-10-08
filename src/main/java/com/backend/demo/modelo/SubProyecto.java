@@ -16,6 +16,7 @@ public class SubProyecto {
 	private String nombre_subProyecto;
 	private Date fecha_inicio;
 	private Date fecha_fin;
+	private int id_proyecto;
 	private String tipo_subProyecto;
 	private int id_usuario;
 	
@@ -24,12 +25,13 @@ public class SubProyecto {
 	}
 
 	public SubProyecto(int id_subProyecto, String nombre_subProyecto, Date fecha_inicio, Date fecha_fin,
-			String tipo_subProyecto, int id_usuario) {
+			int id_proyecto, String tipo_subProyecto, int id_usuario) {
 		super();
 		this.id_subProyecto = id_subProyecto;
 		this.nombre_subProyecto = nombre_subProyecto;
 		this.fecha_inicio = fecha_inicio;
 		this.fecha_fin = fecha_fin;
+		this.id_proyecto = id_proyecto;
 		this.tipo_subProyecto = tipo_subProyecto;
 		this.id_usuario = id_usuario;
 	}
@@ -66,6 +68,14 @@ public class SubProyecto {
 		this.fecha_fin = fecha_fin;
 	}
 
+	public int getId_proyecto() {
+		return id_proyecto;
+	}
+
+	public void setId_proyecto(int id_proyecto) {
+		this.id_proyecto = id_proyecto;
+	}
+
 	public String getTipo_subProyecto() {
 		return tipo_subProyecto;
 	}
@@ -81,7 +91,7 @@ public class SubProyecto {
 	public void setId_usuario(int id_usuario) {
 		this.id_usuario = id_usuario;
 	}
-	
+
 	
 	
 	
