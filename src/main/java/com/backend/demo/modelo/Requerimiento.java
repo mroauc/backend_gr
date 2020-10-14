@@ -16,7 +16,7 @@ public class Requerimiento {
 	private String descripcion;
 	private int id_usuario;
 	private int id_subProyecto;
-	private Date created_at;
+	private String fecha_creacion;
 	private String prioridad;
 	private String estado;
 	private String categoria;
@@ -26,14 +26,14 @@ public class Requerimiento {
 		
 	}
 
-	public Requerimiento(int id_requerimiento, String descripcion, int id_usuario, int id_subProyecto, Date created_at,
+	public Requerimiento(int id_requerimiento, String descripcion, int id_usuario, int id_subProyecto, String fecha_creacion,
 			String prioridad, String estado, String categoria, int id_template) {
 		super();
 		this.id_requerimiento = id_requerimiento;
 		this.descripcion = descripcion;
 		this.id_usuario = id_usuario;
 		this.id_subProyecto = id_subProyecto;
-		this.created_at = created_at;
+		this.fecha_creacion = fecha_creacion;
 		this.prioridad = prioridad;
 		this.estado = estado;
 		this.categoria = categoria;
@@ -72,12 +72,12 @@ public class Requerimiento {
 		this.id_subProyecto = id_subProyecto;
 	}
 
-	public Date getCreated_at() {
-		return created_at;
+	public String getFecha_creacion() {
+		return fecha_creacion;
 	}
 
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
+	public void setFecha_creacion(String fecha_creacion) {
+		this.fecha_creacion = fecha_creacion;
 	}
 
 	public String getPrioridad() {

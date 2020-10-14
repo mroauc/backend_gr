@@ -17,21 +17,21 @@ public class Proyecto {
 	private Date fecha_inicio;
 	private Date fecha_fin;
 	private int id_usuario;
-	private Date created_at;
+	private String fecha_creacion;
 	
 	public Proyecto() {
 		
 	}
 
 	public Proyecto(int id_proyecto, String nombre, Date fecha_inicio, Date fecha_fin, int id_usuario,
-			Date created_at) {
+			String fecha_creacion) {
 		super();
 		this.id_proyecto = id_proyecto;
 		this.nombre = nombre;
 		this.fecha_inicio = fecha_inicio;
 		this.fecha_fin = fecha_fin;
 		this.id_usuario = id_usuario;
-		this.created_at = created_at;
+		this.fecha_creacion = fecha_creacion;
 	}
 
 	public int getId_proyecto() {
@@ -74,11 +74,11 @@ public class Proyecto {
 		this.id_usuario = id_usuario;
 	}
 
-	public Date getCreated_at() {
-		return created_at;
+	public String getFecha_creacion() {
+		return fecha_creacion;
 	}
 
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
+	public void setFecha_creacion(String fecha_creacion) {
+		this.fecha_creacion = fecha_creacion;
 	}
 }

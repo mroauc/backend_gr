@@ -14,18 +14,20 @@ public class Usuario {
 	private String rol;
 	private String estado;
 	private String password;
+	private String email;
 	
 	public Usuario() {
 		
 	}
 
-	public Usuario(int id_usuario, String nombre, String rol, String estado, String password) {
+	public Usuario(int id_usuario, String nombre, String rol, String estado, String password, String email) {
 		super();
 		this.id_usuario = id_usuario;
 		this.nombre = nombre;
 		this.rol = rol;
 		this.estado = estado;
 		this.password = password;
+		this.email = email;
 	}
 
 	public int getId_usuario() {
@@ -68,5 +70,11 @@ public class Usuario {
 		this.password = password;
 	}
 	
+	public String getEmail() {
+		return email;
+	}
 	
+	public void setEmail(String email) {
+		this.email=email;
+	}
 }
