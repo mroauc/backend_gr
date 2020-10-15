@@ -1,6 +1,5 @@
 package com.backend.demo.modelo;
 
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,17 +13,17 @@ public class Proyecto {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_proyecto;
 	private String nombre;
-	private Date fecha_inicio;
-	private Date fecha_fin;
+	private String fecha_inicio;
+	private String fecha_fin;
 	private int id_usuario;
-	private Date created_at;
+	private String created_at;
 	
 	public Proyecto() {
 		
 	}
 
-	public Proyecto(int id_proyecto, String nombre, Date fecha_inicio, Date fecha_fin, int id_usuario,
-			Date created_at) {
+	public Proyecto(int id_proyecto, String nombre, String fecha_inicio, String fecha_fin, int id_usuario,
+			String created_at) {
 		super();
 		this.id_proyecto = id_proyecto;
 		this.nombre = nombre;
@@ -50,19 +49,19 @@ public class Proyecto {
 		this.nombre = nombre;
 	}
 
-	public Date getFecha_inicio() {
+	public String getFecha_inicio() {
 		return fecha_inicio;
 	}
 
-	public void setFecha_inicio(Date fecha_inicio) {
+	public void setFecha_inicio(String fecha_inicio) {
 		this.fecha_inicio = fecha_inicio;
 	}
 
-	public Date getFecha_fin() {
+	public String getFecha_fin() {
 		return fecha_fin;
 	}
 
-	public void setFecha_fin(Date fecha_fin) {
+	public void setFecha_fin(String fecha_fin) {
 		this.fecha_fin = fecha_fin;
 	}
 
@@ -74,11 +73,11 @@ public class Proyecto {
 		this.id_usuario = id_usuario;
 	}
 
-	public Date getCreated_at() {
+	public String getCreated_at() {
 		return created_at;
 	}
 
-	public void setCreated_at(Date created_at) {
+	public void setCreated_at(String created_at) {
 		this.created_at = created_at;
 	}
 }

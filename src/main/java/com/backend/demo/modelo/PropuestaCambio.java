@@ -1,7 +1,5 @@
 package com.backend.demo.modelo;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,13 +12,13 @@ public class PropuestaCambio {
 	private int id_propuestaCambio;
 	private String nombre;
 	private int id_modulo;
-	private Date fecha_peticion;
+	private String fecha_peticion;
 	private int id_usuario;
 	private String descripcion;
 	private int justificacion;
 	private String alternativas;
 	private String consecuencias_rechazo;
-	private Date fecha_resolucion;
+	private String fecha_resolucion;
 	private String comentarios;
 	private String estado;
 	
@@ -28,9 +26,9 @@ public class PropuestaCambio {
 		
 	}
 
-	public PropuestaCambio(int id_propuestaCambio, String nombre, int id_modulo, Date fecha_peticion, int id_usuario,
+	public PropuestaCambio(int id_propuestaCambio, String nombre, int id_modulo, String fecha_peticion, int id_usuario,
 			String descripcion, int justificacion, String alternativas, String consecuencias_rechazo,
-			Date fecha_resolucion, String comentarios, String estado) {
+			String fecha_resolucion, String comentarios, String estado) {
 		super();
 		this.id_propuestaCambio = id_propuestaCambio;
 		this.nombre = nombre;
@@ -70,11 +68,11 @@ public class PropuestaCambio {
 		this.id_modulo = id_modulo;
 	}
 
-	public Date getFecha_peticion() {
+	public String getFecha_peticion() {
 		return fecha_peticion;
 	}
 
-	public void setFecha_peticion(Date fecha_peticion) {
+	public void setFecha_peticion(String fecha_peticion) {
 		this.fecha_peticion = fecha_peticion;
 	}
 
@@ -118,11 +116,11 @@ public class PropuestaCambio {
 		this.consecuencias_rechazo = consecuencias_rechazo;
 	}
 
-	public Date getFecha_resolucion() {
+	public String getFecha_resolucion() {
 		return fecha_resolucion;
 	}
 
-	public void setFecha_resolucion(Date fecha_resolucion) {
+	public void setFecha_resolucion(String fecha_resolucion) {
 		this.fecha_resolucion = fecha_resolucion;
 	}
 

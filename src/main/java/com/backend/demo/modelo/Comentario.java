@@ -1,7 +1,5 @@
 package com.backend.demo.modelo;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,14 +12,14 @@ public class Comentario {
 	private int id_comentario;
 	private String texto;
 	private int id_requerimiento;
-	private Date fecha_ingreso;
+	private String fecha_ingreso;
 	private int id_usuario;
 	
 	public Comentario() {
 		
 	}
 
-	public Comentario(int id_comentario, String texto, int id_requerimiento, Date fecha_ingreso, int id_usuario) {
+	public Comentario(int id_comentario, String texto, int id_requerimiento, String fecha_ingreso, int id_usuario) {
 		super();
 		this.id_comentario = id_comentario;
 		this.texto = texto;
@@ -54,11 +52,11 @@ public class Comentario {
 		this.id_requerimiento = id_requerimiento;
 	}
 
-	public Date getFecha_ingreso() {
+	public String getFecha_ingreso() {
 		return fecha_ingreso;
 	}
 
-	public void setFecha_ingreso(Date fecha_ingreso) {
+	public void setFecha_ingreso(String fecha_ingreso) {
 		this.fecha_ingreso = fecha_ingreso;
 	}
 
