@@ -16,21 +16,30 @@ public class Proyecto {
 	private String fecha_inicio;
 	private String fecha_fin;
 	private int id_usuario;
+<<<<<<< HEAD
 	private String created_at;
+=======
+	private String fecha_creacion;
+>>>>>>> 9c8b81e6ad518aa453691af9a2f773915559573e
 	
 	public Proyecto() {
 		
 	}
 
+<<<<<<< HEAD
 	public Proyecto(int id_proyecto, String nombre, String fecha_inicio, String fecha_fin, int id_usuario,
 			String created_at) {
+=======
+	public Proyecto(int id_proyecto, String nombre, Date fecha_inicio, Date fecha_fin, int id_usuario,
+			String fecha_creacion) {
+>>>>>>> 9c8b81e6ad518aa453691af9a2f773915559573e
 		super();
 		this.id_proyecto = id_proyecto;
 		this.nombre = nombre;
 		this.fecha_inicio = fecha_inicio;
 		this.fecha_fin = fecha_fin;
 		this.id_usuario = id_usuario;
-		this.created_at = created_at;
+		this.fecha_creacion = fecha_creacion;
 	}
 
 	public int getId_proyecto() {
@@ -73,11 +82,20 @@ public class Proyecto {
 		this.id_usuario = id_usuario;
 	}
 
+<<<<<<< HEAD
 	public String getCreated_at() {
 		return created_at;
 	}
 
 	public void setCreated_at(String created_at) {
 		this.created_at = created_at;
+=======
+	public String getFecha_creacion() {
+		return fecha_creacion;
+	}
+
+	public void setFecha_creacion(String fecha_creacion) {
+		this.fecha_creacion = fecha_creacion;
+>>>>>>> 9c8b81e6ad518aa453691af9a2f773915559573e
 	}
 }

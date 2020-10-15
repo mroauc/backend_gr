@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
 public class Template {
 	@Id
@@ -17,13 +16,14 @@ public class Template {
 	private String nombre;
 	private String tipo;
 	private String template;
-	private Date fecha;
+	//private Date fecha;
+	private String fecha;
 	
 	public Template() {
 		
 	}
 
-	public Template(int id_template, String prefijo, String nombre, String tipo, String template, Date fecha) {
+	public Template(int id_template, String prefijo, String nombre, String tipo, String template, String fecha) {
 		super();
 		this.id_template = id_template;
 		this.prefijo = prefijo;
@@ -73,11 +73,11 @@ public class Template {
 		this.template = template;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 }

@@ -39,7 +39,7 @@ public class RelacionRequerimientosController {
 		return data.save(rr);
 	}
 	
-	@DeleteMapping("/eliminar")
+	@DeleteMapping("/eliminar/{id}")
 	public Integer eliminar(@PathVariable Integer id) {
 		data.deleteById(id);
 		return id;

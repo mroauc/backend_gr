@@ -14,16 +14,18 @@ public class Errores {
 	private int id_error;
 	private String contenido;
 	private int id_usuario;
+	private String fecha;
 	
 	public Errores() {
 		
 	}
 
-	public Errores(int id_error, String contenido, int id_usuario) {
+	public Errores(int id_error, String contenido, int id_usuario, String fecha) {
 		super();
 		this.id_error = id_error;
 		this.contenido = contenido;
 		this.id_usuario = id_usuario;
+		this.fecha = fecha;
 	}
 
 	public int getId_error() {
@@ -48,5 +50,13 @@ public class Errores {
 
 	public void setId_usuario(int id_usuario) {
 		this.id_usuario = id_usuario;
+	}
+	
+	public String getFecha() {
+		return fecha;
+	}
+	
+	public void setFecha(String fecha) {
+		this.fecha=fecha;
 	}
 }
