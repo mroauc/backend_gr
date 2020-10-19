@@ -1,7 +1,5 @@
 package com.backend.demo.modelo;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,8 +12,8 @@ public class SubProyecto {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_subProyecto;
 	private String nombre_subProyecto;
-	private Date fecha_inicio;
-	private Date fecha_fin;
+	private String fecha_inicio;
+	private String fecha_fin;
 	private int id_proyecto;
 	private String tipo_subProyecto;
 	private int id_usuario;
@@ -24,7 +22,7 @@ public class SubProyecto {
 		
 	}
 
-	public SubProyecto(int id_subProyecto, String nombre_subProyecto, Date fecha_inicio, Date fecha_fin,
+	public SubProyecto(int id_subProyecto, String nombre_subProyecto, String fecha_inicio, String fecha_fin,
 			int id_proyecto, String tipo_subProyecto, int id_usuario) {
 		super();
 		this.id_subProyecto = id_subProyecto;
@@ -52,19 +50,19 @@ public class SubProyecto {
 		this.nombre_subProyecto = nombre_subProyecto;
 	}
 
-	public Date getFecha_inicio() {
+	public String getFecha_inicio() {
 		return fecha_inicio;
 	}
 
-	public void setFecha_inicio(Date fecha_inicio) {
+	public void setFecha_inicio(String fecha_inicio) {
 		this.fecha_inicio = fecha_inicio;
 	}
 
-	public Date getFecha_fin() {
+	public String getFecha_fin() {
 		return fecha_fin;
 	}
 
-	public void setFecha_fin(Date fecha_fin) {
+	public void setFecha_fin(String fecha_fin) {
 		this.fecha_fin = fecha_fin;
 	}
 
