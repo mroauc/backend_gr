@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,27 +25,32 @@ public class UsuarioActividadController {
 	@Autowired
 	private RUsuarioActividad data;
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/")
 	public List<UsuarioActividad> index(){
 		return (List<UsuarioActividad>) data.findAll();
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/{id}")
 	public Optional<UsuarioActividad> get(@PathVariable Integer id){
 		return data.findById(id);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/guardar")
 	public UsuarioActividad guardar(@RequestBody UsuarioActividad usuarioactividad) {
 		return data.save(usuarioactividad);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/eliminar/{id}")
 	public Integer eliminar(@PathVariable Integer id) {
 		data.deleteById(id);
 		return id;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/editar")
 	public UsuarioActividad editar(@RequestBody UsuarioActividad usuarioactividad) {
 		return data.save(usuarioactividad);

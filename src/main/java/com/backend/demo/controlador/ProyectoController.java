@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,27 +25,32 @@ public class ProyectoController {
 	@Autowired
 	private RProyecto data;
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/")
 	public List<Proyecto> index(){
 		return (List<Proyecto>) data.findAll();
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/{id_proyecto}")
 	public Optional<Proyecto> get(@PathVariable Integer id_proyecto){
 		return data.findById(id_proyecto);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/guardar")
 	public Proyecto guardar(@RequestBody Proyecto proyecto) {
 		return data.save(proyecto);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/eliminar/{id_proyecto}")
 	public Integer eliminar(@PathVariable Integer id_proyecto) {
 		data.deleteById(id_proyecto);
 		return id_proyecto;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/editar")
 	public Proyecto editar(@RequestBody Proyecto proyecto) {
 		return data.save(proyecto);
