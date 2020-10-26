@@ -25,32 +25,32 @@ public class ErroresController {
 	@Autowired
 	private RErrores data;
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
 	@GetMapping("/")
 	public List<Errores> index(){
 		return (List<Errores>) data.findAll();
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
 	@GetMapping("/{id}")
 	public Optional<Errores> get(@PathVariable Integer id){
 		return data.findById(id);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
 	@PostMapping("/guardar")
 	public Errores guardar(@RequestBody Errores error) {
 		return data.save(error);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
 	@DeleteMapping("/eliminar/{id}")
 	public Integer eliminar(@PathVariable Integer id) {
 		data.deleteById(id);
 		return id;
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
 	@PostMapping("/editar")
 	public Errores editar(@RequestBody Errores error) {
 		return data.save(error);

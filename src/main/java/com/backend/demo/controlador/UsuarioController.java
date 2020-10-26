@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.backend.demo.security.entity.Usuario;
 import com.backend.demo.security.repository.UsuarioRepository;
-
-
 
 @RestController
 @RequestMapping("/api/usuario")
@@ -26,16 +24,17 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioRepository data;
-	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
 	@GetMapping("/")
 	public List<Usuario> index(){
 		return (List<Usuario>) data.findAll();
 	}
 	
-	@GetMapping("/{id_usuario")
-	public Optional<Usuario> getUsuario(@PathVariable Integer id_usuario){
-		return data.findById(id_usuario);
+	@GetMapping("/{email}")
+	public Optional<Usuario> getUsuario(@PathVariable String email){
+		return data.findByEmail(email);
+		//return data.findById(id_usuario);
 	}
 	
 	@DeleteMapping("/eliminar/{id_usuario}")

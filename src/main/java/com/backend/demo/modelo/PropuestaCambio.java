@@ -15,7 +15,7 @@ public class PropuestaCambio {
 	private String fecha_peticion;
 	private int id_usuario;
 	private String descripcion;
-	private int justificacion;
+	private String justificacion;
 	private String alternativas;
 	private String consecuencias_rechazo;
 	private String fecha_resolucion;
@@ -27,7 +27,7 @@ public class PropuestaCambio {
 	}
 
 	public PropuestaCambio(int id_propuestaCambio, String nombre, int id_modulo, String fecha_peticion, int id_usuario,
-			String descripcion, int justificacion, String alternativas, String consecuencias_rechazo,
+			String descripcion, String justificacion, String alternativas, String consecuencias_rechazo,
 			String fecha_resolucion, String comentarios, String estado) {
 		super();
 		this.id_propuestaCambio = id_propuestaCambio;
@@ -92,11 +92,11 @@ public class PropuestaCambio {
 		this.descripcion = descripcion;
 	}
 
-	public int getJustificacion() {
+	public String getJustificacion() {
 		return justificacion;
 	}
 
-	public void setJustificacion(int justificacion) {
+	public void setJustificacion(String justificacion) {
 		this.justificacion = justificacion;
 	}
 

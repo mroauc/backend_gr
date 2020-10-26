@@ -25,32 +25,38 @@ public class ProyectoController {
 	@Autowired
 	private RProyecto data;
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
 	@GetMapping("/")
 	public List<Proyecto> index(){
 		return (List<Proyecto>) data.findAll();
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
 	@GetMapping("/{id_proyecto}")
 	public Optional<Proyecto> get(@PathVariable Integer id_proyecto){
 		return data.findById(id_proyecto);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
+	@GetMapping("/nombre/{nombre_proyecto}")
+	public Optional<Proyecto> getProyecto(@PathVariable String nombre_proyecto){
+		return data.findByNombre(nombre_proyecto);
+	}
+	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
 	@PostMapping("/guardar")
 	public Proyecto guardar(@RequestBody Proyecto proyecto) {
 		return data.save(proyecto);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
 	@DeleteMapping("/eliminar/{id_proyecto}")
 	public Integer eliminar(@PathVariable Integer id_proyecto) {
 		data.deleteById(id_proyecto);
 		return id_proyecto;
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
 	@PostMapping("/editar")
 	public Proyecto editar(@RequestBody Proyecto proyecto) {
 		return data.save(proyecto);
