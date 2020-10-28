@@ -14,6 +14,8 @@ public class NuevoUsuario {
     @NotBlank
     private String estado;
     @NotBlank
+    private String tipo;
+    @NotBlank
     private String password;
     private Set<String> roles = new HashSet<>();
 
@@ -43,6 +45,14 @@ public class NuevoUsuario {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	
+	public String getTipo() {
+		return tipo;
+	}
+	
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public void setPassword(String password) {
