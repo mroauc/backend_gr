@@ -25,24 +25,27 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository data;
 
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/")
 	public List<Usuario> index(){
 		return (List<Usuario>) data.findAll();
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/{email}")
 	public Optional<Usuario> getUsuario(@PathVariable String email){
 		return data.findByEmail(email);
 		//return data.findById(id_usuario);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/eliminar/{id_usuario}")
 	public Integer eliminarUsuario(@PathVariable Integer id_usuario) {
 		data.deleteById(id_usuario);
 		return id_usuario;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/editar")
 	public Usuario editarUsuario(@RequestBody Usuario usuario) {
 		return data.save(usuario);

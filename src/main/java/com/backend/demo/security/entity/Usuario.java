@@ -18,6 +18,8 @@ public class Usuario {
     @NotNull
     private String estado;
     @NotNull
+    private String tipo;
+    @NotNull
     private String password;
     @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
@@ -28,10 +30,11 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(@NotNull String nombre, @NotNull String email, @NotNull String estado, @NotNull String password) {
+    public Usuario(@NotNull String nombre, @NotNull String email, @NotNull String estado, @NotNull String tipo, @NotNull String password) {
         this.nombre = nombre;
         this.email = email;
         this.estado = estado;
+        this.tipo = tipo;
         this.password = password;
     }
 
@@ -66,6 +69,14 @@ public class Usuario {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+    
+    public String getTipo() {
+    	return tipo;
+    }
+    
+    public void setTipo(String tipo) {
+    	this.tipo = tipo;
     }
 
     public String getPassword() {

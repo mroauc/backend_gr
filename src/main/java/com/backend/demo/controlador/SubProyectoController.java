@@ -34,6 +34,11 @@ public class SubProyectoController {
 		return data.findById(id_subProyecto);
 	}
 	
+	@GetMapping("/pertenecientes/{id_proyecto}")
+	public List<SubProyecto> listaSubProyectos(@PathVariable int id_proyecto){
+		return data.findByid_proyecto(id_proyecto);
+	}
+	
 	@PostMapping("/guardar")
 	public SubProyecto guardarSubProyecto(@RequestBody SubProyecto subProyecto) {
 		return data.save(subProyecto);
