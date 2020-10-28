@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.backend.demo.security.dto.cambioContraseña;
 import com.backend.demo.security.entity.Usuario;
 import com.backend.demo.security.repository.UsuarioRepository;
 
@@ -24,6 +28,8 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioRepository data;
+	@Autowired
+    PasswordEncoder passwordEncoder;
 
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
 	@GetMapping("/")
@@ -46,6 +52,21 @@ public class UsuarioController {
 	@PostMapping("/editar")
 	public Usuario editarUsuario(@RequestBody Usuario usuario) {
 		return data.save(usuario);
+	}
+	
+	@PostMapping("/pass")
+	public ResponseEntity<String> cambiarContraseña(@RequestBody cambioContraseña cambioContraseña){
+
+		Usuario usuario = data.findById(cambioContraseña.getId_usuario()).get();
+		boolean Match = passwordEncoder.matches(cambioContraseña.getActual(), usuario.getPassword());
+		
+		if(Match) {
+			usuario.setPassword(passwordEncoder.encode(cambioContraseña.getNueva()));
+			data.save(usuario);
+			return new ResponseEntity<>( "true" , HttpStatus.OK);
+		}
+		else
+			return new ResponseEntity<>( "false" , HttpStatus.OK);	
 	}
 	
 }
