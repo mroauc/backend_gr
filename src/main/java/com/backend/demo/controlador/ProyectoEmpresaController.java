@@ -29,10 +29,15 @@ public class ProyectoEmpresaController {
 	public List<ProyectoEmpresa> listar(){
 		return (List<ProyectoEmpresa>)data.findAll();
 	}
-	
+		
 	@GetMapping("/{id_proyecto_empresa}")
 	public Optional<ProyectoEmpresa> obtenerProyectoEmpresa(@PathVariable int id_proyecto_empresa) {
 		return data.findById(id_proyecto_empresa);
+	}
+	
+	@GetMapping("/obtener/{id_proyecto}")
+	public List<ProyectoEmpresa> obtenerPorProyecto(@PathVariable int id_proyecto){
+		return data.findAllByid_proyecto(id_proyecto);
 	}
 	
 	@PostMapping("/guardar")
@@ -45,7 +50,7 @@ public class ProyectoEmpresaController {
 		data.deleteById(id_proyecto_empresa);
 		return id_proyecto_empresa;
 	}
-	
+		
 	@PostMapping("/editar")
 	public ProyectoEmpresa editarProyectoEmpresa(@RequestBody ProyectoEmpresa proyecto_empresa) {
 		return data.save(proyecto_empresa);

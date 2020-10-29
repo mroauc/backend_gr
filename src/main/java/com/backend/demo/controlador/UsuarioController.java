@@ -37,7 +37,7 @@ public class UsuarioController {
 		return (List<Usuario>) data.findAll();
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
 	@GetMapping("/{email}")
 	public Optional<Usuario> getUsuario(@PathVariable String email){
 		return data.findByEmail(email);
