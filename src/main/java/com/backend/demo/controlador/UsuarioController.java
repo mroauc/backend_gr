@@ -37,11 +37,10 @@ public class UsuarioController {
 		return (List<Usuario>) data.findAll();
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
 	@GetMapping("/{email}")
 	public Optional<Usuario> getUsuario(@PathVariable String email){
 		return data.findByEmail(email);
-		//return data.findById(id_usuario);
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -55,6 +54,12 @@ public class UsuarioController {
 	@PostMapping("/editar")
 	public Usuario editarUsuario(@RequestBody Usuario usuario) {
 		return data.save(usuario);
+	}
+	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
+	@GetMapping("tipo/{tipo}")
+	public List<Usuario> getUsuarioByTipo(@PathVariable String tipo){
+		return data.getUsuarioByTipo(tipo);
 	}
 	
 	@PostMapping("/pass")

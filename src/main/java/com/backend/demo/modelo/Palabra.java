@@ -13,18 +13,18 @@ public class Palabra {
 	private int id_palabra;
 	private String palabra;
 	private String significado;
-	private int id_glosario;
+	private int id_proyecto;
 	
 	public Palabra() {
 		
 	}
 
-	public Palabra(int id_palabra, String palabra, String significado, int id_glosario) {
+	public Palabra(int id_palabra, String palabra, String significado, int id_proyecto) {
 		super();
 		this.id_palabra = id_palabra;
 		this.palabra = palabra;
 		this.significado = significado;
-		this.id_glosario = id_glosario;
+		this.id_proyecto = id_proyecto;
 	}
 
 	public int getId_palabra() {
@@ -51,13 +51,15 @@ public class Palabra {
 		this.significado = significado;
 	}
 
-	public int getId_glosario() {
-		return id_glosario;
+	public int getId_proyecto() {
+		return id_proyecto;
 	}
 
-	public void setId_glosario(int id_glosario) {
-		this.id_glosario = id_glosario;
+	public void setId_proyecto(int id_proyecto) {
+		this.id_proyecto = id_proyecto;
 	}
+
+	
 	
 	
 	

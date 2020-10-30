@@ -55,9 +55,9 @@ public class PalabraController {
 		return data.save(palabra);
 	}
 	
-	@GetMapping("/consulta/{id_glosario}")
-	public List<Palabra> consultaBy_idGLosario(@PathVariable int id_glosario){
-		return data.getPalabrasByGLosario(id_glosario);
+	@GetMapping("/consulta/{id_proyecto}")
+	public List<Palabra> consultaBy_idProyecto(@PathVariable int id_proyecto){
+		return data.getPalabrasByProyecto(id_proyecto);
 	}
 	
 	

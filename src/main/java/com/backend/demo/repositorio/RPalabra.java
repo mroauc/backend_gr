@@ -10,6 +10,6 @@ import com.backend.demo.modelo.Palabra;
 
 public interface RPalabra extends CrudRepository<Palabra, Integer> {
 	
-	@Query("SELECT p FROM Palabra p WHERE p.id_glosario = :id_glosario")
-	public List<Palabra> getPalabrasByGLosario(@Param("id_glosario") int id_glosario);
+	@Query("SELECT p FROM Palabra p WHERE p.id_proyecto = :id_proyecto")
+	public List<Palabra> getPalabrasByProyecto(@Param("id_proyecto") int id_proyecto);
 }
