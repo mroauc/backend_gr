@@ -31,6 +31,11 @@ public class PropuestaCambioController {
 		return (List<PropuestaCambio>) data.findAll();
 	}
 	
+	@GetMapping("/obtener/{id_subproyecto}")
+	public List<PropuestaCambio> obtener(@PathVariable Integer id_subproyecto){
+		return (List<PropuestaCambio>) data.findByid_subproyecto(id_subproyecto);
+	}
+	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/{id}")
 	public Optional<PropuestaCambio> get(@PathVariable Integer id){

@@ -11,7 +11,7 @@ public class PropuestaCambio {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_propuestaCambio;
 	private String nombre;
-	private int id_modulo;
+	private int id_subproyecto;
 	private String fecha_peticion;
 	private int id_usuario;
 	private String descripcion;
@@ -26,13 +26,13 @@ public class PropuestaCambio {
 		
 	}
 
-	public PropuestaCambio(int id_propuestaCambio, String nombre, int id_modulo, String fecha_peticion, int id_usuario,
+	public PropuestaCambio(int id_propuestaCambio, String nombre, int id_subproyecto, String fecha_peticion, int id_usuario,
 			String descripcion, String justificacion, String alternativas, String consecuencias_rechazo,
 			String fecha_resolucion, String comentarios, String estado) {
 		super();
 		this.id_propuestaCambio = id_propuestaCambio;
 		this.nombre = nombre;
-		this.id_modulo = id_modulo;
+		this.id_subproyecto = id_subproyecto;
 		this.fecha_peticion = fecha_peticion;
 		this.id_usuario = id_usuario;
 		this.descripcion = descripcion;
@@ -60,12 +60,12 @@ public class PropuestaCambio {
 		this.nombre = nombre;
 	}
 
-	public int getId_modulo() {
-		return id_modulo;
+	public int getId_subproyecto() {
+		return id_subproyecto;
 	}
 
-	public void setId_modulo(int id_modulo) {
-		this.id_modulo = id_modulo;
+	public void setId_subproyecto(int id_subproyecto) {
+		this.id_subproyecto = id_subproyecto;
 	}
 
 	public String getFecha_peticion() {
