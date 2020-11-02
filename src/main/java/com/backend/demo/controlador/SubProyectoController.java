@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.demo.modelo.SubProyecto;
+//import com.backend.demo.modelo.UsuarioRol;
 import com.backend.demo.repositorio.RSubProyecto;
 
 @RestController
@@ -54,5 +55,10 @@ public class SubProyectoController {
 	public SubProyecto editarSubProyecto(@RequestBody SubProyecto subProyecto) {
 		return data.save(subProyecto);
 	}
+	
+	//@GetMapping("/rol_usuario")
+	//public List<UsuarioRol> obtenerUsuarioRoles() {
+	//	return data.UsuariosRoles();
+	//}
 	
 }
