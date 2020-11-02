@@ -49,6 +49,10 @@ public class ClienteController {
 	public Cliente editarCliente(@RequestBody Cliente cliente) {
 		return data.save(cliente);
 	}
+	@GetMapping("id_usuario/{id_usuario}")
+	public Optional<Cliente> ClienteByIdUsuario(@PathVariable int id_usuario){
+		return data.getClienteByIdUsuario(id_usuario);
+	}
 	
 	
 }

@@ -43,6 +43,12 @@ public class UsuarioController {
 		return data.findByEmail(email);
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_CLIENTE')")
+	@GetMapping("/id/{id}")
+	public Optional<Usuario> getUsuarioById(@PathVariable int id){
+		return data.findById(id);
+	}
+	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/eliminar/{id_usuario}")
 	public Integer eliminarUsuario(@PathVariable Integer id_usuario) {

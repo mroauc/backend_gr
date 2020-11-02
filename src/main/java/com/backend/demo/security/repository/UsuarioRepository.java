@@ -16,4 +16,6 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
     boolean existsByEmail(String email);
     @Query("SELECT u FROM Usuario u WHERE u.tipo = :tipo")
     public List<Usuario> getUsuarioByTipo(@Param("tipo") String tipo);
+    @Query("SELECT u FROM Usuario u WHERE u.id = :id")
+    public Optional<Usuario> getUsuarioById(@Param("id") String id);
 }
