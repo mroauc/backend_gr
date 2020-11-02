@@ -38,6 +38,12 @@ public class EncargadoSubProyectoController {
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/obtener/{id_subproyecto}")
+	public List<EncargadoSubProyecto> obtener(@PathVariable Integer id_subproyecto){
+		return data.findAllByid_subProyecto(id_subproyecto);
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/guardar")
 	public EncargadoSubProyecto guardar(@RequestBody EncargadoSubProyecto esp) {
 		return data.save(esp);

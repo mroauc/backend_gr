@@ -37,6 +37,13 @@ public class RequerimientoController {
 		return data.findById(id_requerimiento);
 	}
 	
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/obtener/{id_subproyecto}")
+	public List<Requerimiento> obtener(@PathVariable Integer id_subproyecto){
+		return data.findAllByid_subProyecto(id_subproyecto);
+	}
+	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/guardar")
 	public Requerimiento guardar(@RequestBody Requerimiento requerimiento) {
