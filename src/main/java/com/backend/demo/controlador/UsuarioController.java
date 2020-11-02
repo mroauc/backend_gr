@@ -49,7 +49,7 @@ public class UsuarioController {
 		return data.findById(id);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_CLIENTE')")
 	@DeleteMapping("/eliminar/{id_usuario}")
 	public Integer eliminarUsuario(@PathVariable Integer id_usuario) {
 		data.deleteById(id_usuario);

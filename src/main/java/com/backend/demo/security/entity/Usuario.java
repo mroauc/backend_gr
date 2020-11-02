@@ -2,6 +2,10 @@ package com.backend.demo.security.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,9 +26,10 @@ public class Usuario {
     @NotNull
     private String password;
     @NotNull
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
     inverseJoinColumns = @JoinColumn(name = "rol_id"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Rol> roles = new HashSet<>();
 
     public Usuario() {
