@@ -2,6 +2,7 @@ package com.backend.demo.modelo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,8 @@ public class Requerimiento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_requerimiento;
+	private String nombre;
+	@Column(length = 2000)
 	private String descripcion;
 	private int id_usuario;
 	private int id_subProyecto;
@@ -26,11 +29,12 @@ public class Requerimiento {
 		
 	}
 
-	public Requerimiento(int id_requerimiento, String descripcion, int id_usuario, int id_subProyecto, String fecha_creacion,
+	public Requerimiento(int id_requerimiento, String nombre,String descripcion, int id_usuario, int id_subProyecto, String fecha_creacion,
 			String prioridad, String estado, String categoria, int id_template) {
 		super();
 		this.id_requerimiento = id_requerimiento;
 		this.descripcion = descripcion;
+		this.nombre = nombre;
 		this.id_usuario = id_usuario;
 		this.id_subProyecto = id_subProyecto;
 		this.fecha_creacion = fecha_creacion;
@@ -54,6 +58,14 @@ public class Requerimiento {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public int getId_usuario() {
