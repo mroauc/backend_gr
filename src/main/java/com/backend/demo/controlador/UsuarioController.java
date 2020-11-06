@@ -59,6 +59,9 @@ public class UsuarioController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/editar")
 	public Usuario editarUsuario(@RequestBody Usuario usuario) {
+		System.out.println("APARECE CTM");
+		System.out.println(usuario.getId());
+		System.out.println(usuario.getNombre());
 		return data.save(usuario);
 	}
 	

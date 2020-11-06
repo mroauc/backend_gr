@@ -48,6 +48,7 @@ public class AuthController {
     @Autowired
     JwtProvider jwtProvider;
     
+    
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
     	
@@ -99,4 +100,32 @@ public class AuthController {
         JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
         return new ResponseEntity(jwtDto, HttpStatus.OK);
     }
+    
+    /*@PostMapping("/cambiarRol")
+    public ResponseEntity<?> CambiarRol(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
+    	Usuario usuario =
+                new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getEmail(), nuevoUsuario.getEstado(),
+                        nuevoUsuario.getTipo(),passwordEncoder.encode(nuevoUsuario.getPassword()));
+        
+    	Set<Rol> roles = new HashSet<>();
+        if(!nuevoUsuario.getRoles().contains("cliente")) {
+        	roles.add(rolService.getByRolNombre(RolNombre.ROLE_ANALISTA).get());
+        	if(nuevoUsuario.getRoles().contains("lider") || nuevoUsuario.getRoles().contains("jefe") || nuevoUsuario.getRoles().contains("admin")) {
+        		roles.add(rolService.getByRolNombre(RolNombre.ROLE_LIDER_SUBPROYECTO).get());
+        		if(nuevoUsuario.getRoles().contains("jefe") || nuevoUsuario.getRoles().contains("admin") ) {
+        			roles.add(rolService.getByRolNombre(RolNombre.ROLE_JEFE_PROYECTO).get());
+        			if(nuevoUsuario.getRoles().contains("admin")) {
+        				roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
+        				roles.add(rolService.getByRolNombre(RolNombre.ROLE_CLIENTE).get());
+        			}
+        		}
+        	}
+        }
+        else
+        	roles.add(rolService.getByRolNombre(RolNombre.ROLE_CLIENTE).get());
+        
+        usuario.setRoles(roles);
+        usuarioService.save(usuario);
+        return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
+    }*/
 }
