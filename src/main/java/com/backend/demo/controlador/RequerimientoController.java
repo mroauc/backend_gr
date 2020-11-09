@@ -25,38 +25,40 @@ public class RequerimientoController {
 	@Autowired
 	private RRequerimiento data;
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
 	@GetMapping("/")
 	public List<Requerimiento> index(){
 		return (List<Requerimiento>) data.findAll();
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
 	@GetMapping("/{id_requerimiento}")
 	public Optional<Requerimiento> get(@PathVariable Integer id_requerimiento){
 		return data.findById(id_requerimiento);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+
+	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
 	@GetMapping("/obtener/{id_subproyecto}")
 	public List<Requerimiento> obtener(@PathVariable Integer id_subproyecto){
 		return data.findAllByid_subProyecto(id_subproyecto);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
 	@PostMapping("/guardar")
 	public Requerimiento guardar(@RequestBody Requerimiento requerimiento) {
 		return data.save(requerimiento);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
 	@DeleteMapping("/eliminar/{id_requerimiento}")
 	public Integer eliminar(@PathVariable Integer id_requerimiento) {
 		data.deleteById(id_requerimiento);
 		return id_requerimiento;
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
 	@PostMapping("/editar")
 	public Requerimiento editar(@RequestBody Requerimiento requerimiento) {
 		return data.save(requerimiento);
