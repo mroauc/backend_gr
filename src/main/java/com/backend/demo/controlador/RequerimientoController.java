@@ -37,6 +37,7 @@ public class RequerimientoController {
 		return data.findById(id_requerimiento);
 	}
 	
+
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
 	@GetMapping("/obtener/{id_subproyecto}")
