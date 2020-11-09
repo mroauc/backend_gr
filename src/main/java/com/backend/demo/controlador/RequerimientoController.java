@@ -37,7 +37,6 @@ public class RequerimientoController {
 		return data.findById(id_requerimiento);
 	}
 	
-	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/obtener/{id_subproyecto}")
 	public List<Requerimiento> obtener(@PathVariable Integer id_subproyecto){
