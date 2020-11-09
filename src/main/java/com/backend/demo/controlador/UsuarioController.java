@@ -31,7 +31,7 @@ public class UsuarioController {
 	@Autowired
     PasswordEncoder passwordEncoder;
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
 	@GetMapping("/")
 	public List<Usuario> index(){
 		return (List<Usuario>) data.findAll();

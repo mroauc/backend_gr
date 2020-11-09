@@ -34,6 +34,11 @@ public class ComentarioController {
 		return data.findById(id_comentario);
 	}
 	
+	@GetMapping("/requerimiento/{id_requerimiento}")
+	public List<Comentario> ComentarioByRequerimiento(@PathVariable int id_requerimiento){
+		return data.findAllByRequerimiento(id_requerimiento);
+	}
+	
 	@PostMapping("/guardar")
 	public Comentario guardarComentario(@RequestBody Comentario comentario) {
 		return data.save(comentario);
