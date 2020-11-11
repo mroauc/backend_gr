@@ -37,6 +37,13 @@ public class RelacionRequerimientosController {
 		return data.findById(id);
 	}
 	
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/obtener/{id_requerimiento_a}")
+	public List<RelacionRequerimientos> obtenerPertenecientes(@PathVariable Integer id_requerimiento_a){
+		return data.findAllByid_requerimiento_a(id_requerimiento_a);
+	}
+	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/guardar")
 	public RelacionRequerimientos guardar(@RequestBody RelacionRequerimientos rr) {

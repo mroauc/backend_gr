@@ -11,17 +11,17 @@ public class ImpactoDirecto {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_impacto_directo;
 	private int id_propuesta_cambio;
-	private int id_relacion_requerimiento;
+	private int id_requerimiento;
 	
 	public ImpactoDirecto() {
 		
 	}
 
-	public ImpactoDirecto(int id_impacto_directo, int id_propuesta_cambio, int id_relacion_requerimiento) {
+	public ImpactoDirecto(int id_impacto_directo, int id_propuesta_cambio, int id_requerimiento) {
 		super();
 		this.id_impacto_directo = id_impacto_directo;
 		this.id_propuesta_cambio = id_propuesta_cambio;
-		this.id_relacion_requerimiento = id_relacion_requerimiento;
+		this.id_requerimiento = id_requerimiento;
 	}
 
 	public int getId_impacto_directo() {
@@ -40,12 +40,12 @@ public class ImpactoDirecto {
 		this.id_propuesta_cambio = id_propuesta_cambio;
 	}
 
-	public int getId_relacion_requerimiento() {
-		return id_relacion_requerimiento;
+	public int getId_requerimiento() {
+		return id_requerimiento;
 	}
 
-	public void setId_relacion_requerimiento(int id_relacion_requerimiento) {
-		this.id_relacion_requerimiento = id_relacion_requerimiento;
+	public void setId_requerimiento(int id_requerimiento) {
+		this.id_requerimiento = id_requerimiento;
 	}
 	
 	
