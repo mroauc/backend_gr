@@ -55,4 +55,18 @@ public class UsuarioActividadController {
 	public UsuarioActividad editar(@RequestBody UsuarioActividad usuarioactividad) {
 		return data.save(usuarioactividad);
 	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("id_requerimiento/{id_requerimiento}")
+	public UsuarioActividad findUsuarioActividadByIdReq(@PathVariable Integer id_requerimiento) {
+		return data.findAllByIdRequerimiento(id_requerimiento);
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@DeleteMapping("eliminar/id_requerimiento/{id_requerimiento}")
+	public Integer deleteByIdRequerimiento(@PathVariable Integer id_requerimiento) {
+		UsuarioActividad usuarioActividad = data.findAllByIdRequerimiento(id_requerimiento);
+		data.deleteById(usuarioActividad.getId_usuarioActividad());
+		return id_requerimiento;
+	}
 }

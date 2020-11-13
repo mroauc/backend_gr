@@ -14,13 +14,13 @@ public class UsuarioActividad {
 	private int id_usuarioActividad;
 	private int id_requerimiento;
 	private int id_usuario;
-	private Date fecha;
+	private String fecha;
 	
 	public UsuarioActividad() {
 		
 	}
 
-	public UsuarioActividad(int id_usuarioActividad, int id_requerimiento, int id_usuario, Date fecha) {
+	public UsuarioActividad(int id_usuarioActividad, int id_requerimiento, int id_usuario, String fecha) {
 		super();
 		this.id_usuarioActividad = id_usuarioActividad;
 		this.id_requerimiento = id_requerimiento;
@@ -52,11 +52,11 @@ public class UsuarioActividad {
 		this.id_usuario = id_usuario;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 }
