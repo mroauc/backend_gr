@@ -1,5 +1,6 @@
 package com.backend.demo.modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ public class Errores {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_error;
+	@Column(length = 1000)
 	private String contenido;
 	private int id_usuario;
 	private String fecha;
