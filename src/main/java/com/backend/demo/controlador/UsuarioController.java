@@ -31,13 +31,13 @@ public class UsuarioController {
 	@Autowired
     PasswordEncoder passwordEncoder;
 
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA')")
 	@GetMapping("/")
 	public List<Usuario> index(){
 		return (List<Usuario>) data.findAll();
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_CLIENTE')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_CLIENTE','ROLE_ANALISTA')")
 	@GetMapping("/{email}")
 	public Optional<Usuario> getUsuario(@PathVariable String email){
 		return data.findByEmail(email);
