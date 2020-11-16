@@ -43,6 +43,12 @@ public class EncargadoSubProyectoController {
 		return data.findAllByid_subProyecto(id_subproyecto);
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA')")
+	@GetMapping("/id_usuario/{id_usuario}")
+	public List<EncargadoSubProyecto> obtenerByIdUsuario(@PathVariable Integer id_usuario){
+		return data.findAllByid_usuario(id_usuario);
+	}
+	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/guardar")
 	public EncargadoSubProyecto guardar(@RequestBody EncargadoSubProyecto esp) {

@@ -1,5 +1,6 @@
 package com.backend.demo.controlador;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,8 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backend.demo.modelo.EncargadoSubProyecto;
 import com.backend.demo.modelo.Proyecto;
+import com.backend.demo.modelo.SubProyecto;
+import com.backend.demo.repositorio.REncargadoSubProyecto;
 import com.backend.demo.repositorio.RProyecto;
+import com.backend.demo.repositorio.RSubProyecto;
 
 @RestController
 @RequestMapping("api/proyecto")
@@ -24,8 +29,10 @@ public class ProyectoController {
 	
 	@Autowired
 	private RProyecto data;
+	@Autowired
+	private RSubProyecto dataSub;
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA')")
 	@GetMapping("/")
 	public List<Proyecto> index(){
 		return (List<Proyecto>) data.findAll();
@@ -56,9 +63,35 @@ public class ProyectoController {
 		return id_proyecto;
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA')")
+	@GetMapping("/id_usuario/{id_usuario}/{tipo}")
+	public List<Proyecto> getProyectoByIdUser(@PathVariable Integer id_usuario, @PathVariable String tipo){
+		
+		if(tipo.equals("admin")) {
+			
+			return (List<Proyecto>) data.findAll();
+		}
+		else {
+			List<EncargadoSubProyecto> registrosEncargados = data.findAllByid_usuario(id_usuario);
+			List<Integer> IdSubproyectos = new ArrayList<Integer>();
+			List<Proyecto> Proyectos = new ArrayList<Proyecto>();
+			
+			for (EncargadoSubProyecto item: registrosEncargados) {
+				IdSubproyectos.add(item.getId_subProyecto());
+			}
+			
+			for(Integer item: IdSubproyectos ) {
+				Proyectos.add(data.findById(dataSub.findById(item).get().getId_proyecto()).get());
+			}
+			System.out.println(Proyectos);
+			return Proyectos;
+		}
+	}
+	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
 	@PostMapping("/editar")
 	public Proyecto editar(@RequestBody Proyecto proyecto) {
 		return data.save(proyecto);
 	}
+	
 }
