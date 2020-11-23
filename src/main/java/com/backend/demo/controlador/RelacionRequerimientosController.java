@@ -1,5 +1,6 @@
 package com.backend.demo.controlador;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backend.demo.modelo.Proyecto;
 import com.backend.demo.modelo.RelacionRequerimientos;
+import com.backend.demo.modelo.Requerimiento;
 import com.backend.demo.repositorio.RRelacionRequerimientos;
+import com.backend.demo.repositorio.RRequerimiento;
 
 @RestController
 @RequestMapping("api/relacionrequerimientos")
@@ -24,6 +28,8 @@ public class RelacionRequerimientosController {
 
 	@Autowired
 	private RRelacionRequerimientos data;
+	@Autowired
+	private RRequerimiento repRequerimiento;
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/")
@@ -37,11 +43,26 @@ public class RelacionRequerimientosController {
 		return data.findById(id);
 	}
 	
-	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/obtener/{id_requerimiento_a}")
 	public List<RelacionRequerimientos> obtenerPertenecientes(@PathVariable Integer id_requerimiento_a){
 		return data.findAllByid_requerimiento_a(id_requerimiento_a);
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/requerimientosAsociados/{id_requerimiento_a}")
+	public List<Requerimiento> obtenerReqPertenecientes(@PathVariable Integer id_requerimiento_a){
+		List<RelacionRequerimientos> Encontrados =  data.findAllByid_requerimiento_a(id_requerimiento_a);
+		List<Requerimiento> requerimientosFinales = new ArrayList<Requerimiento>();
+		System.out.println(Encontrados.get(0).getId_relacionRequerimientos());
+		
+		for(RelacionRequerimientos item : Encontrados ){
+			System.out.println(item.getId_requerimiento_b());
+			requerimientosFinales.add(repRequerimiento.findById(item.getId_requerimiento_b()).get());
+		}
+		System.out.println(requerimientosFinales.get(0));
+		
+		return requerimientosFinales;
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")

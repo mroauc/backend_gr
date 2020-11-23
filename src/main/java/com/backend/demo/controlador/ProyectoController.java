@@ -83,7 +83,6 @@ public class ProyectoController {
 			for(Integer item: IdSubproyectos ) {
 				Proyectos.add(data.findById(dataSub.findById(item).get().getId_proyecto()).get());
 			}
-			System.out.println(Proyectos);
 			return Proyectos;
 		}
 	}
