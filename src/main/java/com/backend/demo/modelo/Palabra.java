@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class Palabra {
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int id_palabra;
 	private String palabra;
 	@Column(length = 500)

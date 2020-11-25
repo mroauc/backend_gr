@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class SubProyecto {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_subProyecto;
 	private String nombre_subProyecto;
 	private String fecha_inicio;

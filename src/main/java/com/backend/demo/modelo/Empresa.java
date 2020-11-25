@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Entity
 public class Empresa {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_empresa;
 	private String razon_social;
 	private String rut_empresa;

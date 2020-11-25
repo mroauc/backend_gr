@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class ProyectoEmpresa {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_proyecto_empresa;
 	private int id_proyecto;
 	private int id_empresa;
