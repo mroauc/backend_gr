@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @Entity
 public class Template {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_template;
 	private String prefijo;
 	private String nombre;

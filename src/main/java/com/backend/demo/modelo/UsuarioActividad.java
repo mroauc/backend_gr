@@ -10,7 +10,7 @@ import javax.persistence.Id;
 @Entity
 public class UsuarioActividad {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_usuarioActividad;
 	private int id_requerimiento;
 	private int id_usuario;

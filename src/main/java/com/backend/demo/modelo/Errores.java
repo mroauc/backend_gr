@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name="Error")
 public class Errores {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_error;
 	@Column(length = 1000)
 	private String contenido;
