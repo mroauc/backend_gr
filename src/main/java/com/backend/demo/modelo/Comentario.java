@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class Comentario {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_comentario;
 	private String texto;
 	private int id_requerimiento;
