@@ -43,8 +43,6 @@ public class SeccionController {
 		return ListaSecciones;
 	}
 	
-	
-	
 	@PostMapping("/guardar")
 	public Seccion guardarSeccion(@RequestBody Seccion seccion) {
 		return data.save(seccion);
