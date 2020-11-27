@@ -38,6 +38,12 @@ public class RequerimientoController {
 	}
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
+	@GetMapping("/nombre/{nombre}")
+	public Optional<Requerimiento> obtenerPorNombre(@PathVariable String nombre){
+		return data.findByNombre(nombre);
+	}
+	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
 	@GetMapping("/obtener/{id_subproyecto}")
 	public List<Requerimiento> obtener(@PathVariable Integer id_subproyecto){
 		return data.findAllByid_subProyecto(id_subproyecto);
