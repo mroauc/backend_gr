@@ -25,32 +25,32 @@ public class TemplateController {
 	@Autowired
 	private RTemplate data;
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_ANALISTA')")
 	@GetMapping("/")
 	public List<Template> index(){
 		return (List<Template>) data.findAll();
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_ANALISTA')")
 	@GetMapping("/{id_template}")
 	public Optional<Template> getTemplate(@PathVariable Integer id_template){
 		return data.findById(id_template);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_ANALISTA')")
 	@PostMapping("/guardar")
 	public Template guardarTemplate(@RequestBody Template template) {
 		return data.save(template);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_ANALISTA')")
 	@DeleteMapping("/eliminar/{id_template}")
 	public Integer eliminarTemplate(@PathVariable Integer id_template) {
 		data.deleteById(id_template);
 		return id_template;
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_ANALISTA')")
 	@PostMapping("editar")
 	public Template editarTemplate(@RequestBody Template template) {
 		return data.save(template);
