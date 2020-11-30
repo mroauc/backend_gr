@@ -38,6 +38,12 @@ public class ErroresController {
 	}
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
+	@GetMapping("/pertenecientes/{id_proyecto}")
+	public List<Errores> obtenerPorProy(@PathVariable Integer id_proyecto){
+		return data.findAllByid_proyecto(id_proyecto);
+	}
+	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
 	@PostMapping("/guardar")
 	public Errores guardar(@RequestBody Errores error) {
 		return data.save(error);

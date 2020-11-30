@@ -25,44 +25,44 @@ public class EncargadoSubProyectoController {
 	@Autowired
 	private REncargadoSubProyecto data;
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_ANALISTA')")
 	@GetMapping("/")
 	public List<EncargadoSubProyecto> index(){
 		return (List<EncargadoSubProyecto>) data.findAll();
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_ANALISTA')")
 	@GetMapping("/{id}")
 	public Optional<EncargadoSubProyecto> get(@PathVariable Integer id){
 		return data.findById(id);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_ANALISTA')")
 	@GetMapping("/obtener/{id_subproyecto}")
 	public List<EncargadoSubProyecto> obtener(@PathVariable Integer id_subproyecto){
 		return data.findAllByid_subProyecto(id_subproyecto);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_ANALISTA')")
 	@GetMapping("/id_usuario/{id_usuario}")
 	public List<EncargadoSubProyecto> obtenerByIdUsuario(@PathVariable Integer id_usuario){
 		return data.findAllByid_usuario(id_usuario);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_ANALISTA')")
 	@PostMapping("/guardar")
 	public EncargadoSubProyecto guardar(@RequestBody EncargadoSubProyecto esp) {
 		return data.save(esp);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_ANALISTA')")
 	@DeleteMapping("/eliminar/{id}")
 	public Integer eliminar(@PathVariable Integer id) {
 		data.deleteById(id);
 		return id;
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_ANALISTA')")
 	@PostMapping("/editar")
 	public EncargadoSubProyecto editar(@RequestBody EncargadoSubProyecto esp) {
 		return data.save(esp);
