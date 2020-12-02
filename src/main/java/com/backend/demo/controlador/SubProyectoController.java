@@ -1,4 +1,4 @@
-package com.backend.demo.controlador;
+ package com.backend.demo.controlador;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backend.demo.modelo.EncargadoSubProyecto;
+import com.backend.demo.modelo.ImpactoDirecto;
+import com.backend.demo.modelo.PropuestaCambio;
+import com.backend.demo.modelo.Requerimiento;
 import com.backend.demo.modelo.SubProyecto;
+import com.backend.demo.repositorio.REncargadoSubProyecto;
+import com.backend.demo.repositorio.RPropuestaCambio;
+import com.backend.demo.repositorio.RRequerimiento;
 //import com.backend.demo.modelo.UsuarioRol;
 import com.backend.demo.repositorio.RSubProyecto;
 
@@ -24,6 +31,12 @@ public class SubProyectoController {
 	
 	@Autowired
 	private RSubProyecto data;
+	@Autowired
+	private REncargadoSubProyecto rEncargadoSubProyecto;
+	@Autowired
+	private RPropuestaCambio rPropuestaCambio;
+	@Autowired
+	private RequerimientoController requerimientoC;
 	
 	@GetMapping("/")
 	public List<SubProyecto> listar(){
@@ -47,6 +60,22 @@ public class SubProyectoController {
 	
 	@DeleteMapping("/eliminar/{id_subProyecto}")
 	public int eliminarSubProyecto(@PathVariable int id_subProyecto){
+		List<EncargadoSubProyecto> encargos = rEncargadoSubProyecto.findAllByid_subProyecto(id_subProyecto);
+		for (EncargadoSubProyecto item: encargos) {
+			rEncargadoSubProyecto.deleteById(item.getId_encargadoSubProyecto());
+		}
+		/*
+		List<PropuestaCambio> propuestas = rPropuestaCambio.findByid_subproyecto(id_subProyecto);
+		System.out.println(propuestas.get(0));
+		for (PropuestaCambio item: propuestas) {
+			rPropuestaCambio.deleteById(item.getId_propuestaCambio());
+		}*/
+		System.out.println("hola");
+		List<Requerimiento> requerimientos = requerimientoC.obtener(id_subProyecto);
+		for (Requerimiento item: requerimientos) {
+			requerimientoC.eliminar(item.getId_requerimiento());
+		}
+		
 		data.deleteById(id_subProyecto);
 		return id_subProyecto;
 	}

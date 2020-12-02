@@ -12,6 +12,9 @@ public interface RSubProyecto extends CrudRepository<SubProyecto, Integer> {
 	@Query("SELECT s FROM SubProyecto s WHERE s.id_proyecto = :id_proyecto")
 	List<SubProyecto> findByid_proyecto(Integer id_proyecto);
 	
+	@Query("SELECT s FROM SubProyecto s WHERE s.id_usuario = :id_usuario")
+	List<SubProyecto> findByid_usuario(Integer id_usuario);
+	
 	//@Query("SELECT r FROM usuario_rol r")
 	//List<UsuarioRol> UsuariosRoles();
 }
