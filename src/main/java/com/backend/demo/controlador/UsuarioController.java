@@ -17,6 +17,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backend.demo.modelo.Comentario;
+import com.backend.demo.modelo.EncargadoSubProyecto;
+import com.backend.demo.modelo.Errores;
+import com.backend.demo.modelo.PropuestaCambio;
+import com.backend.demo.modelo.Proyecto;
+import com.backend.demo.modelo.SubProyecto;
+import com.backend.demo.modelo.UsuarioActividad;
+import com.backend.demo.repositorio.RComentario;
+import com.backend.demo.repositorio.REncargadoSubProyecto;
+import com.backend.demo.repositorio.RErrores;
+import com.backend.demo.repositorio.RPropuestaCambio;
+import com.backend.demo.repositorio.RProyecto;
+import com.backend.demo.repositorio.RSubProyecto;
+import com.backend.demo.repositorio.RUsuarioActividad;
 import com.backend.demo.security.dto.cambioContraseña;
 import com.backend.demo.security.entity.Usuario;
 import com.backend.demo.security.repository.UsuarioRepository;
@@ -30,6 +44,21 @@ public class UsuarioController {
 	private UsuarioRepository data;
 	@Autowired
     PasswordEncoder passwordEncoder;
+	@Autowired
+	private RComentario rComentario;
+	@Autowired
+	private REncargadoSubProyecto rEncargadoSubProyecto;
+	@Autowired
+	private RUsuarioActividad rUsuarioActividad;
+	@Autowired
+	private RSubProyecto rSubProyecto;
+	@Autowired
+	private RProyecto rProyecto;
+	@Autowired
+	private RPropuestaCambio rPropuestadeCambio;
+	@Autowired
+	private RErrores rError;
+	
 
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA')")
 	@GetMapping("/")
@@ -47,13 +76,6 @@ public class UsuarioController {
 	@GetMapping("/id/{id}")
 	public Optional<Usuario> getUsuarioById(@PathVariable int id){
 		return data.findById(id);
-	}
-	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_CLIENTE')")
-	@DeleteMapping("/eliminar/{id_usuario}")
-	public Integer eliminarUsuario(@PathVariable Integer id_usuario) {
-		data.deleteById(id_usuario);
-		return id_usuario;
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -81,6 +103,42 @@ public class UsuarioController {
 		}
 		else
 			return new ResponseEntity<>( "false" , HttpStatus.OK);	
+	}
+	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_CLIENTE')")
+	@DeleteMapping("/eliminar/{id_usuario}")
+	public Integer eliminarUsuario(@PathVariable Integer id_usuario) {
+		List<Comentario> comentarios = rComentario.findAllByUsuario(id_usuario);
+		for (Comentario item: comentarios) {
+			item.setId_usuario(0);
+			System.out.println(item);
+		}
+		List <EncargadoSubProyecto> cargos = rEncargadoSubProyecto.findAllByid_usuario(id_usuario);
+		for (EncargadoSubProyecto item: cargos) {
+			rEncargadoSubProyecto.deleteById(item.getId_encargadoSubProyecto());
+		}
+		List <UsuarioActividad> regActividad = rUsuarioActividad.findAllByIdUsuario(id_usuario);
+		for (UsuarioActividad item: regActividad) {
+			item.setId_usuario(0);
+		}
+		List <SubProyecto> SubProyectos = rSubProyecto.findByid_usuario(id_usuario);
+		for (SubProyecto item: SubProyectos) {
+			item.setId_usuario(0);
+		}
+		List <Proyecto> Proyectos = rProyecto.findProyectosByid_usuario(id_usuario);
+		for (Proyecto item: Proyectos) {
+			item.setId_usuario(0);
+		}
+		List <PropuestaCambio> Propuestas = rPropuestadeCambio.findByid_usuario(id_usuario);
+		for (PropuestaCambio item: Propuestas) {
+			item.setId_usuario(0);
+		}
+		List <Errores> errores = rError.findAllByid_usuario(id_usuario);
+		for (Errores item: errores) {
+			item.setId_usuario(0);
+		}
+		data.deleteById(id_usuario);
+		return id_usuario;
 	}
 	
 }

@@ -10,4 +10,6 @@ import com.backend.demo.modelo.RelacionRequerimientos;
 public interface RRelacionRequerimientos extends CrudRepository<RelacionRequerimientos, Integer>{
 	@Query("SELECT r  from RelacionRequerimientos r WHERE r.id_requerimiento_a = :id_requerimiento_a")
 	List<RelacionRequerimientos> findAllByid_requerimiento_a(Integer id_requerimiento_a);
+	@Query("SELECT r  from RelacionRequerimientos r WHERE r.id_requerimiento_b = :id_requerimiento_b")
+	List<RelacionRequerimientos> findAllByid_requerimiento_b(Integer id_requerimiento_b);
 }
