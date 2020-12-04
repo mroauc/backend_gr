@@ -25,6 +25,7 @@ import com.backend.demo.repositorio.RImpactoDirecto;
 import com.backend.demo.repositorio.RPropuestaCambio;
 import com.backend.demo.repositorio.RRelacionRequerimientos;
 import com.backend.demo.repositorio.RRequerimiento;
+import com.backend.demo.repositorio.RUsuarioActividad;
 
 @RestController
 @RequestMapping("api/requerimiento")
@@ -41,6 +42,8 @@ public class RequerimientoController {
 	private RPropuestaCambio rPropuestaCambio;
 	@Autowired
 	private RRelacionRequerimientos rRelacionRequerimiento;
+	@Autowired
+	private RUsuarioActividad rUsuarioActividad;
 	
 	
 	
@@ -100,6 +103,8 @@ public class RequerimientoController {
 		for (RelacionRequerimientos item: Relaciones_b) {
 			rRelacionRequerimiento.deleteById(item.getId_relacionRequerimientos());
 		}
+		UsuarioActividad UsuariosActividades = rUsuarioActividad.findAllByIdRequerimiento(id_requerimiento);
+		rUsuarioActividad.deleteById(UsuariosActividades.getId_usuarioActividad());
 		
 		data.deleteById(id_requerimiento);
 		return id_requerimiento;
