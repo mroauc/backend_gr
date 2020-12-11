@@ -1,6 +1,7 @@
 package com.backend.demo.security.controller;
 
 import com.backend.demo.dto.Mensaje;
+import com.backend.demo.repositorio.RUsuarioActividad;
 import com.backend.demo.security.dto.JwtDto;
 import com.backend.demo.security.dto.LoginUsuario;
 import com.backend.demo.security.dto.NuevoUsuario;
@@ -8,6 +9,7 @@ import com.backend.demo.security.entity.Rol;
 import com.backend.demo.security.entity.Usuario;
 import com.backend.demo.security.enums.RolNombre;
 import com.backend.demo.security.jwt.JwtProvider;
+import com.backend.demo.security.repository.UsuarioRepository;
 import com.backend.demo.security.service.RolService;
 import com.backend.demo.security.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,9 @@ public class AuthController {
 
     @Autowired
     JwtProvider jwtProvider;
+    
+    @Autowired
+	private UsuarioRepository rUsuario;
     
     
     @PostMapping("/nuevo")
@@ -90,15 +95,20 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
-        if(bindingResult.hasErrors())
-            return new ResponseEntity(new Mensaje("campos mal puestos"), HttpStatus.BAD_REQUEST);
-        Authentication authentication =
-                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getEmail(), loginUsuario.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtProvider.generateToken(authentication);
-        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
-        JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
-        return new ResponseEntity(jwtDto, HttpStatus.OK);
+    	Usuario usuario = rUsuario.findByEmail(loginUsuario.getEmail()).get();
+    	if(usuario.getEstado().equals("Activo")) {
+    		if(bindingResult.hasErrors())
+                return new ResponseEntity(new Mensaje("campos mal puestos"), HttpStatus.BAD_REQUEST);
+            Authentication authentication =
+                    authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getEmail(), loginUsuario.getPassword()));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String jwt = jwtProvider.generateToken(authentication);
+            UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+            JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
+            return new ResponseEntity(jwtDto, HttpStatus.OK);
+    	}
+    	return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        
     }
     
     /*@PostMapping("/cambiarRol")
