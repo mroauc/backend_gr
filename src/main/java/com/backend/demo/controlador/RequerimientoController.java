@@ -104,6 +104,7 @@ public class RequerimientoController {
 			rRelacionRequerimiento.deleteById(item.getId_relacionRequerimientos());
 		}
 		UsuarioActividad UsuariosActividades = rUsuarioActividad.findAllByIdRequerimiento(id_requerimiento);
+		System.out.println(UsuariosActividades.getId_usuarioActividad());
 		rUsuarioActividad.deleteById(UsuariosActividades.getId_usuarioActividad());
 		
 		data.deleteById(id_requerimiento);
