@@ -16,6 +16,7 @@ public class Requerimiento {
 	private int id_requerimiento;
 	private String nombre;
 	@Column(length = 2000)
+	private String nombre_descriptivo;
 	private String descripcion;
 	private int id_usuario;
 	private int id_subProyecto;
@@ -29,12 +30,13 @@ public class Requerimiento {
 		
 	}
 
-	public Requerimiento(int id_requerimiento, String nombre,String descripcion, int id_usuario, int id_subProyecto, String fecha_creacion,
+	public Requerimiento(int id_requerimiento, String nombre, String nombre_descriptivo, String descripcion, int id_usuario, int id_subProyecto, String fecha_creacion,
 			String prioridad, String estado, String categoria, int id_template) {
 		super();
 		this.id_requerimiento = id_requerimiento;
 		this.descripcion = descripcion;
 		this.nombre = nombre;
+		this.nombre_descriptivo = nombre_descriptivo;
 		this.id_usuario = id_usuario;
 		this.id_subProyecto = id_subProyecto;
 		this.fecha_creacion = fecha_creacion;
@@ -66,6 +68,14 @@ public class Requerimiento {
 	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public String getNombre_descriptivo() {
+		return nombre_descriptivo;
+	}
+	
+	public void setNombre_descriptivo(String nombre_descriptivo) {
+		this.nombre_descriptivo = nombre_descriptivo;
 	}
 
 	public int getId_usuario() {
