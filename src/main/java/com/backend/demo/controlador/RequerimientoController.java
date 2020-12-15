@@ -72,6 +72,12 @@ public class RequerimientoController {
 	}
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
+	@GetMapping("obtener/template/{id_template}")
+	public List<Requerimiento> obtenerportemplate(@PathVariable Integer id_template){
+		return data.findAllByid_template(id_template);
+	}
+	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
 	@PostMapping("/guardar")
 	public Requerimiento guardar(@RequestBody Requerimiento requerimiento) {
 		return data.save(requerimiento);

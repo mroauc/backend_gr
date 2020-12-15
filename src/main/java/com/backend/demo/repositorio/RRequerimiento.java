@@ -13,4 +13,7 @@ public interface RRequerimiento extends CrudRepository<Requerimiento, Integer>{
 	List<Requerimiento> findAllByid_subProyecto(Integer id_subProyecto);	
 	
 	Optional<Requerimiento> findByNombre(String nombre);
+	
+	@Query("SELECT r from Requerimiento r WHERE r.id_template = :id_template")
+	List<Requerimiento> findAllByid_template(Integer id_template);
 }
