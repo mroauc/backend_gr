@@ -70,7 +70,6 @@ public class SubProyectoController {
 		for (PropuestaCambio item: propuestas) {
 			rPropuestaCambio.deleteById(item.getId_propuestaCambio());
 		}*/
-		System.out.println("hola");
 		List<Requerimiento> requerimientos = requerimientoC.obtener(id_subProyecto);
 		for (Requerimiento item: requerimientos) {
 			requerimientoC.eliminar(item.getId_requerimiento());

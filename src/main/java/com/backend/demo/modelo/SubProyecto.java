@@ -17,13 +17,14 @@ public class SubProyecto {
 	private int id_proyecto;
 	private String tipo_subProyecto;
 	private int id_usuario;
+	private int index_documento;
 	
 	public SubProyecto() {
 		
 	}
-
+	
 	public SubProyecto(int id_subProyecto, String nombre_subProyecto, String fecha_inicio, String fecha_fin,
-			int id_proyecto, String tipo_subProyecto, int id_usuario) {
+			int id_proyecto, String tipo_subProyecto, int id_usuario, int index_documento) {
 		super();
 		this.id_subProyecto = id_subProyecto;
 		this.nombre_subProyecto = nombre_subProyecto;
@@ -32,6 +33,7 @@ public class SubProyecto {
 		this.id_proyecto = id_proyecto;
 		this.tipo_subProyecto = tipo_subProyecto;
 		this.id_usuario = id_usuario;
+		this.index_documento = index_documento;
 	}
 
 	public int getId_subProyecto() {
@@ -90,7 +92,14 @@ public class SubProyecto {
 		this.id_usuario = id_usuario;
 	}
 
-	
+	public int getIndex_documento() {
+		return index_documento;
+	}
+
+	public void setIndex_documento(int index_documento) {
+		this.index_documento = index_documento;
+	}
+
 	
 	
 }
