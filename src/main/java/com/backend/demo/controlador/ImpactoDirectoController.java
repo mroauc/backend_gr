@@ -25,25 +25,25 @@ public class ImpactoDirectoController {
 	@Autowired
 	private RImpactoDirecto data;
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
 	@GetMapping("/")
 	public List<ImpactoDirecto> listar(){
 		return (List<ImpactoDirecto>)data.findAll();
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
 	@GetMapping("/{id_impacto_directo}")
 	public Optional<ImpactoDirecto> obtenerImpactoDirecto(@PathVariable int id_impacto_directo){
 		return data.findById(id_impacto_directo);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
 	@GetMapping("/obtener/{id_propuestaCambio}")
 	public List<ImpactoDirecto> obtenerPorPropuestaCambio(@PathVariable Integer id_propuestaCambio){
 		return data.findAllByid_propuestaCambio(id_propuestaCambio);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
 	@GetMapping("obtener/requerimiento/{id_requerimiento}")
 	public List<ImpactoDirecto> obtenerPorRequerimiento(@PathVariable Integer id_requerimiento){
 		return data.findAllByid_requerimiento(id_requerimiento);

@@ -58,7 +58,7 @@ public class ProyectoController {
 		return (List<Proyecto>) data.findAll();
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA')")
 	@GetMapping("/{id_proyecto}")
 	public Optional<Proyecto> get(@PathVariable Integer id_proyecto){
 		return data.findById(id_proyecto);
@@ -108,20 +108,22 @@ public class ProyectoController {
 	public List<Proyecto> getProyectoByIdUser(@PathVariable Integer id_usuario, @PathVariable String tipo){
 		
 		if(tipo.equals("admin")) {
-			
 			return (List<Proyecto>) data.findAll();
 		}
 		else {
 			List<EncargadoSubProyecto> registrosEncargados = data.findAllByid_usuario(id_usuario);
 			List<Integer> IdSubproyectos = new ArrayList<Integer>();
+			List<Integer> IdProyectos = new ArrayList<Integer>();
 			List<Proyecto> Proyectos = new ArrayList<Proyecto>();
 			
 			for (EncargadoSubProyecto item: registrosEncargados) {
 				IdSubproyectos.add(item.getId_subProyecto());
 			}
-			
 			for(Integer item: IdSubproyectos ) {
-				Proyectos.add(data.findById(dataSub.findById(item).get().getId_proyecto()).get());
+				if(IdProyectos.indexOf(dataSub.findById(item).get().getId_proyecto()) == -1) {
+					IdProyectos.add(dataSub.findById(item).get().getId_proyecto());
+					Proyectos.add(data.findById(dataSub.findById(item).get().getId_proyecto()).get());
+				}
 			}
 			return Proyectos;
 		}

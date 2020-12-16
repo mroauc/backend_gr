@@ -31,25 +31,25 @@ public class RelacionRequerimientosController {
 	@Autowired
 	private RRequerimiento repRequerimiento;
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
 	@GetMapping("/")
 	public List<RelacionRequerimientos> index(){
 		return (List<RelacionRequerimientos>) data.findAll();
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
 	@GetMapping("/{id}")
 	public Optional<RelacionRequerimientos> get(@PathVariable Integer id){
 		return data.findById(id);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
 	@GetMapping("/obtener/{id_requerimiento_a}")
 	public List<RelacionRequerimientos> obtenerPertenecientes(@PathVariable Integer id_requerimiento_a){
 		return data.findAllByid_requerimiento_a(id_requerimiento_a);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
 	@GetMapping("/requerimientosAsociados/{id_requerimiento_a}")
 	public List<Requerimiento> obtenerReqPertenecientes(@PathVariable Integer id_requerimiento_a){
 		List<RelacionRequerimientos> Encontrados =  data.findAllByid_requerimiento_a(id_requerimiento_a);

@@ -25,7 +25,7 @@ public class UsuarioActividadController {
 	@Autowired
 	private RUsuarioActividad data;
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
 	@GetMapping("/")
 	public List<UsuarioActividad> index(){
 		return (List<UsuarioActividad>) data.findAll();
@@ -56,7 +56,7 @@ public class UsuarioActividadController {
 		return data.save(usuarioactividad);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
 	@GetMapping("id_requerimiento/{id_requerimiento}")
 	public UsuarioActividad findUsuarioActividadByIdReq(@PathVariable Integer id_requerimiento) {
 		return data.findAllByIdRequerimiento(id_requerimiento);

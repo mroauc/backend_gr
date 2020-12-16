@@ -25,19 +25,19 @@ public class ErroresController {
 	@Autowired
 	private RErrores data;
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA','ROLE_CLIENTE')")
 	@GetMapping("/")
 	public List<Errores> index(){
 		return (List<Errores>) data.findAll();
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA','ROLE_CLIENTE')")
 	@GetMapping("/{id}")
 	public Optional<Errores> get(@PathVariable Integer id){
 		return data.findById(id);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA','ROLE_CLIENTE')")
 	@GetMapping("/pertenecientes/{id_proyecto}")
 	public List<Errores> obtenerPorProy(@PathVariable Integer id_proyecto){
 		return data.findAllByid_proyecto(id_proyecto);
