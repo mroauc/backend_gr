@@ -15,8 +15,8 @@ public class Requerimiento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_requerimiento;
 	private String nombre;
-	@Column(length = 2000)
 	private String nombre_descriptivo;
+	@Column(length = 2000)
 	private String descripcion;
 	private int id_usuario;
 	private int id_subProyecto;
