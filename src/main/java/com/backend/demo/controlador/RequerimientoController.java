@@ -59,13 +59,13 @@ public class RequerimientoController {
 		return data.findById(id_requerimiento);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
 	@GetMapping("/nombre/{nombre}")
 	public Optional<Requerimiento> obtenerPorNombre(@PathVariable String nombre){
 		return data.findByNombre(nombre);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA','ROLE_CLIENTE')")
 	@GetMapping("/obtener/{id_subproyecto}")
 	public List<Requerimiento> obtener(@PathVariable Integer id_subproyecto){
 		return data.findAllByid_subProyecto(id_subproyecto);
@@ -83,7 +83,7 @@ public class RequerimientoController {
 		return data.save(requerimiento);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
 	@PostMapping("/editar")
 	public Requerimiento editar(@RequestBody Requerimiento requerimiento) {
 		return data.save(requerimiento);
