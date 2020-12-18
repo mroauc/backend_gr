@@ -19,13 +19,14 @@ public class VersionAnterior {
 	private String estado;
 	private int id_usuario;
 	private String fecha;
+	private String cambios_realizados;
 	
 	public VersionAnterior() {
 		
 	}
 
 	public VersionAnterior(int id_version_anterior, int id_requerimiento, String descripcion, String nombre_descriptivo, String prioridad,
-			String estado, int id_usuario, String fecha) {
+			String estado, int id_usuario, String fecha, String cambios_realizados) {
 		super();
 		this.id_version_anterior = id_version_anterior;
 		this.id_requerimiento = id_requerimiento;
@@ -35,6 +36,7 @@ public class VersionAnterior {
 		this.estado = estado;
 		this.id_usuario = id_usuario;
 		this.fecha = fecha;
+		this.cambios_realizados = cambios_realizados;
 	}
 
 	public int getId_version_anterior() {
@@ -101,4 +103,11 @@ public class VersionAnterior {
 		this.fecha = fecha;
 	}
 	
+	public String getCambios_realizados() {
+		return cambios_realizados;
+	}
+	
+	public void setCambios_realizados(String cambios_realizados) {
+		this.cambios_realizados = cambios_realizados;
+	}
 }
