@@ -53,16 +53,23 @@ public class RelacionRequerimientosController {
 	@GetMapping("/requerimientosAsociados/{id_requerimiento_a}")
 	public List<Requerimiento> obtenerReqPertenecientes(@PathVariable Integer id_requerimiento_a){
 		List<RelacionRequerimientos> Encontrados =  data.findAllByid_requerimiento_a(id_requerimiento_a);
-		List<Requerimiento> requerimientosFinales = new ArrayList<Requerimiento>();
-		System.out.println(Encontrados.get(0).getId_relacionRequerimientos());
-		
-		for(RelacionRequerimientos item : Encontrados ){
-			System.out.println(item.getId_requerimiento_b());
-			requerimientosFinales.add(repRequerimiento.findById(item.getId_requerimiento_b()).get());
+		if(!Encontrados.isEmpty()) {
+			List<Requerimiento> requerimientosFinales = new ArrayList<Requerimiento>();
+			System.out.println(Encontrados.get(0).getId_relacionRequerimientos());
+			
+			for(RelacionRequerimientos item : Encontrados ){
+				System.out.println(item.getId_requerimiento_b());
+				requerimientosFinales.add(repRequerimiento.findById(item.getId_requerimiento_b()).get());
+			}
+			System.out.println(requerimientosFinales.get(0));
+			return requerimientosFinales;
 		}
-		System.out.println(requerimientosFinales.get(0));
+		else {
+			return new ArrayList<Requerimiento>();
+		}
 		
-		return requerimientosFinales;
+		
+		
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
