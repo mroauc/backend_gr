@@ -24,6 +24,8 @@ public class Usuario {
     @NotNull
     private String tipo;
     @NotNull
+    private String color_vistaDrag;
+    @NotNull
     private String password;
     @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
@@ -35,11 +37,12 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(@NotNull String nombre, @NotNull String email, @NotNull String estado, @NotNull String tipo, @NotNull String password) {
+    public Usuario(@NotNull String nombre, @NotNull String email, @NotNull String estado, @NotNull String tipo, @NotNull String color_vistaDrag, @NotNull String password) {
         this.nombre = nombre;
         this.email = email;
         this.estado = estado;
         this.tipo = tipo;
+        this.color_vistaDrag = color_vistaDrag;
         this.password = password;
     }
 
@@ -82,6 +85,14 @@ public class Usuario {
     
     public void setTipo(String tipo) {
     	this.tipo = tipo;
+    }
+    
+    public String getColor_vistaDrag() {
+    	return color_vistaDrag;
+    }
+    
+    public void setColor_vistaDrag(String color) {
+    	this.color_vistaDrag = color;
     }
 
     public String getPassword() {

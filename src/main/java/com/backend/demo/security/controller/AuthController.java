@@ -65,7 +65,7 @@ public class AuthController {
      
         Usuario usuario =
                 new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getEmail(), nuevoUsuario.getEstado(),
-                        nuevoUsuario.getTipo(),passwordEncoder.encode(nuevoUsuario.getPassword()));
+                        nuevoUsuario.getTipo(), nuevoUsuario.getColor_vistaDrag(),passwordEncoder.encode(nuevoUsuario.getPassword()));
         Set<Rol> roles = new HashSet<>();
         
         if(!nuevoUsuario.getRoles().contains("cliente")) {
