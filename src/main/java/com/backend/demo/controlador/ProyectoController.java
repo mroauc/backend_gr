@@ -52,19 +52,19 @@ public class ProyectoController {
 	
 	
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO')")
 	@GetMapping("/")
 	public List<Proyecto> index(){
 		return (List<Proyecto>) data.findAll();
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO')")
 	@GetMapping("/{id_proyecto}")
 	public Optional<Proyecto> get(@PathVariable Integer id_proyecto){
 		return data.findById(id_proyecto);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE', 'ROLE_LIDER_SUBPROYECTO')")
 	@GetMapping("/nombre/{nombre_proyecto}")
 	public Optional<Proyecto> getProyecto(@PathVariable String nombre_proyecto){
 		return data.findByNombre(nombre_proyecto);
@@ -103,7 +103,7 @@ public class ProyectoController {
 		return id_proyecto;
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO')")
 	@GetMapping("/id_usuario/{id_usuario}/{tipo}")
 	public List<Proyecto> getProyectoByIdUser(@PathVariable Integer id_usuario, @PathVariable String tipo){
 		
