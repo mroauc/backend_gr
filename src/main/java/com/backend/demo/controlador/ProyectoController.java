@@ -52,6 +52,7 @@ public class ProyectoController {
 	
 	
 	
+	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA')")
 	@GetMapping("/")
 	public List<Proyecto> index(){
@@ -103,12 +104,29 @@ public class ProyectoController {
 		return id_proyecto;
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA','ROLE_LIDER_SUBPROYECTO')")
 	@GetMapping("/id_usuario/{id_usuario}/{tipo}")
 	public List<Proyecto> getProyectoByIdUser(@PathVariable Integer id_usuario, @PathVariable String tipo){
 		
 		if(tipo.equals("admin")) {
 			return (List<Proyecto>) data.findAll();
+		}
+		if(tipo.equals("lider")) {
+			List<SubProyecto> registrosSubProyectos = dataSub.findByid_usuario(id_usuario);
+			List<Integer> IdSubproyectos = new ArrayList<Integer>();
+			List<Integer> IdProyectos = new ArrayList<Integer>();
+			List<Proyecto> Proyectos = new ArrayList<Proyecto>();
+			
+			for (SubProyecto item: registrosSubProyectos) {
+				IdSubproyectos.add(item.getId_subProyecto());
+			}
+			for(Integer item: IdSubproyectos ) {
+				if(IdProyectos.indexOf(dataSub.findById(item).get().getId_proyecto()) == -1) {
+					IdProyectos.add(dataSub.findById(item).get().getId_proyecto());
+					Proyectos.add(data.findById(dataSub.findById(item).get().getId_proyecto()).get());
+				}
+			}
+			return Proyectos;
 		}
 		else {
 			List<EncargadoSubProyecto> registrosEncargados = data.findAllByid_usuario(id_usuario);
