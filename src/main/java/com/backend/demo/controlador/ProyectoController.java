@@ -50,31 +50,36 @@ public class ProyectoController {
 	private SubProyectoController subProyectoC;
 	
 	
+<<<<<<< HEAD
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO')")
+=======
+	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO','ROLE_JEFE_PROYECTO')")
+>>>>>>> 7778d31f11301534d34abf9ef17393964d44d34e
 	@GetMapping("/")
 	public List<Proyecto> index(){
 		return (List<Proyecto>) data.findAll();
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO','ROLE_JEFE_PROYECTO')")
 	@GetMapping("/{id_proyecto}")
 	public Optional<Proyecto> get(@PathVariable Integer id_proyecto){
 		return data.findById(id_proyecto);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE', 'ROLE_LIDER_SUBPROYECTO')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE', 'ROLE_LIDER_SUBPROYECTO','ROLE_JEFE_PROYECTO')")
 	@GetMapping("/nombre/{nombre_proyecto}")
 	public Optional<Proyecto> getProyecto(@PathVariable String nombre_proyecto){
 		return data.findByNombre(nombre_proyecto);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_JEFE_PROYECTO')")
 	@PostMapping("/guardar")
 	public Proyecto guardar(@RequestBody Proyecto proyecto) {
 		return data.save(proyecto);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_JEFE_PROYECTO')")
 	@DeleteMapping("/eliminar/{id_proyecto}")
 	public Integer eliminar(@PathVariable Integer id_proyecto) {
 		List<Errores> errores = rErrores.findAllByid_proyecto(id_proyecto);
@@ -101,7 +106,11 @@ public class ProyectoController {
 		return id_proyecto;
 	}
 	
+<<<<<<< HEAD
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO')")
+=======
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO','ROLE_JEFE_PROYECTO')")
+>>>>>>> 7778d31f11301534d34abf9ef17393964d44d34e
 	@GetMapping("/id_usuario/{id_usuario}/{tipo}")
 	public List<Proyecto> getProyectoByIdUser(@PathVariable Integer id_usuario, @PathVariable String tipo){
 		
@@ -125,6 +134,9 @@ public class ProyectoController {
 			}
 			return Proyectos;
 		}
+		if(tipo.equals("jefe")) {
+			return data.findProyectosByid_usuario(id_usuario);
+		}
 		else {
 			List<EncargadoSubProyecto> registrosEncargados = data.findAllByid_usuario(id_usuario);
 			List<Integer> IdSubproyectos = new ArrayList<Integer>();
@@ -144,7 +156,7 @@ public class ProyectoController {
 		}
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_JEFE_PROYECTO')")
 	@PostMapping("/editar")
 	public Proyecto editar(@RequestBody Proyecto proyecto) {
 		return data.save(proyecto);
