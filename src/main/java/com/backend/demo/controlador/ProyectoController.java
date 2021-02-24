@@ -22,7 +22,6 @@ import com.backend.demo.modelo.Proyecto;
 import com.backend.demo.modelo.ProyectoEmpresa;
 import com.backend.demo.modelo.Seccion;
 import com.backend.demo.modelo.SubProyecto;
-import com.backend.demo.repositorio.REncargadoSubProyecto;
 import com.backend.demo.repositorio.RErrores;
 import com.backend.demo.repositorio.RPalabra;
 import com.backend.demo.repositorio.RProyecto;
@@ -51,13 +50,7 @@ public class ProyectoController {
 	private SubProyectoController subProyectoC;
 	
 	
-	
-<<<<<<< HEAD
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO')")
-=======
-	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA')")
->>>>>>> f945a052203b32340a0dcfbb8db341b77a7fc879
 	@GetMapping("/")
 	public List<Proyecto> index(){
 		return (List<Proyecto>) data.findAll();
@@ -108,11 +101,7 @@ public class ProyectoController {
 		return id_proyecto;
 	}
 	
-<<<<<<< HEAD
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO')")
-=======
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA','ROLE_LIDER_SUBPROYECTO')")
->>>>>>> f945a052203b32340a0dcfbb8db341b77a7fc879
 	@GetMapping("/id_usuario/{id_usuario}/{tipo}")
 	public List<Proyecto> getProyectoByIdUser(@PathVariable Integer id_usuario, @PathVariable String tipo){
 		

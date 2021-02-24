@@ -23,8 +23,7 @@ public class Proyecto {
 		
 	}
 
-	public Proyecto(int id_proyecto, String nombre, String fecha_inicio, String fecha_fin, int id_usuario,
-			String fecha_creacion) {
+	public Proyecto(int id_proyecto, String nombre, String fecha_inicio, String fecha_fin, int id_usuario, String fecha_creacion) {
 		super();
 		this.id_proyecto = id_proyecto;
 		this.nombre = nombre;
