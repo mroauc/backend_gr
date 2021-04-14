@@ -50,12 +50,8 @@ public class ProyectoController {
 	private SubProyectoController subProyectoC;
 	
 	
-<<<<<<< HEAD
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO')")
-=======
+
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO','ROLE_JEFE_PROYECTO')")
->>>>>>> 7778d31f11301534d34abf9ef17393964d44d34e
 	@GetMapping("/")
 	public List<Proyecto> index(){
 		return (List<Proyecto>) data.findAll();
@@ -106,11 +102,8 @@ public class ProyectoController {
 		return id_proyecto;
 	}
 	
-<<<<<<< HEAD
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO')")
-=======
+
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO','ROLE_JEFE_PROYECTO')")
->>>>>>> 7778d31f11301534d34abf9ef17393964d44d34e
 	@GetMapping("/id_usuario/{id_usuario}/{tipo}")
 	public List<Proyecto> getProyectoByIdUser(@PathVariable Integer id_usuario, @PathVariable String tipo){
 		
