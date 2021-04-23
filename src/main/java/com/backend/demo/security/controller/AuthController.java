@@ -65,7 +65,7 @@ public class AuthController {
      
         Usuario usuario =
                 new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getEmail(), nuevoUsuario.getEstado(),
-                        nuevoUsuario.getTipo(), nuevoUsuario.getColor_vistaDrag(),passwordEncoder.encode(nuevoUsuario.getPassword()));
+                        nuevoUsuario.getTipo(), nuevoUsuario.getColor_vistaDrag(), nuevoUsuario.getColor_backgr(), passwordEncoder.encode(nuevoUsuario.getPassword()));
         Set<Rol> roles = new HashSet<>();
         
         if(!nuevoUsuario.getRoles().contains("cliente")) {
@@ -104,7 +104,7 @@ public class AuthController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = jwtProvider.generateToken(authentication);
             UserDetails userDetails = (UserDetails)authentication.getPrincipal();
-            JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
+            JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(),userDetails.getAuthorities());
             return new ResponseEntity(jwtDto, HttpStatus.OK);
     	}
     	return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
