@@ -50,7 +50,12 @@ public class ProyectoController {
 	private SubProyectoController subProyectoC;
 	
 	
+<<<<<<< HEAD
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENTE','ROLE_ANALISTA', 'ROLE_LIDER_SUBPROYECTO','ROLE_JEFE_PROYECTO')")
+=======
+
+	
+>>>>>>> 5c94b761366b6e8e109966cba1855f1a25808e6e
 	@GetMapping("/")
 	public List<Proyecto> index(){
 		return (List<Proyecto>) data.findAll();

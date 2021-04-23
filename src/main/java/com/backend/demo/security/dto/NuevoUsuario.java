@@ -18,6 +18,8 @@ public class NuevoUsuario {
     @NotBlank
     private String color_vistaDrag;
     @NotBlank
+    private String color_backgr;
+    @NotBlank
     private String password;
     private Set<String> roles = new HashSet<>();
 
@@ -63,6 +65,14 @@ public class NuevoUsuario {
 	
 	public void setColor_vistaDrag(String color) {
 		this.color_vistaDrag = color;
+	}
+	
+	public String getColor_backgr() {
+		return color_backgr;
+	}
+	
+	public void setColor_backgr(String color_backgr) {
+		this.color_backgr = color_backgr;
 	}
 
 	public void setPassword(String password) {
