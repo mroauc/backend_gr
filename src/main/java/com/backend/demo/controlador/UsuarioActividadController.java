@@ -25,44 +25,44 @@ public class UsuarioActividadController {
 	@Autowired
 	private RUsuarioActividad data;
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO', 'ROLE_ANALISTA', 'ROLE_LIDER','ROLE_LIDER_SUBPROYECTO')")
 	@GetMapping("/")
 	public List<UsuarioActividad> index(){
 		return (List<UsuarioActividad>) data.findAll();
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO', 'ROLE_ANALISTA', 'ROLE_LIDER','ROLE_LIDER_SUBPROYECTO')")
 	@GetMapping("/{id}")
 	public Optional<UsuarioActividad> get(@PathVariable Integer id){
 		return data.findById(id);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO', 'ROLE_ANALISTA', 'ROLE_LIDER','ROLE_LIDER_SUBPROYECTO')")
 	@PostMapping("/guardar")
 	public UsuarioActividad guardar(@RequestBody UsuarioActividad usuarioactividad) {
 		return data.save(usuarioactividad);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO', 'ROLE_ANALISTA', 'ROLE_LIDER','ROLE_LIDER_SUBPROYECTO')")
 	@DeleteMapping("/eliminar/{id}")
 	public Integer eliminar(@PathVariable Integer id) {
 		data.deleteById(id);
 		return id;
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO', 'ROLE_ANALISTA', 'ROLE_LIDER','ROLE_LIDER_SUBPROYECTO')")
 	@PostMapping("/editar")
 	public UsuarioActividad editar(@RequestBody UsuarioActividad usuarioactividad) {
 		return data.save(usuarioactividad);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO', 'ROLE_ANALISTA', 'ROLE_LIDER','ROLE_LIDER_SUBPROYECTO')")
 	@GetMapping("id_requerimiento/{id_requerimiento}")
 	public UsuarioActividad findUsuarioActividadByIdReq(@PathVariable Integer id_requerimiento) {
 		return data.findAllByIdRequerimiento(id_requerimiento);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO', 'ROLE_ANALISTA', 'ROLE_LIDER','ROLE_LIDER_SUBPROYECTO')")
 	@DeleteMapping("eliminar/id_requerimiento/{id_requerimiento}")
 	public Integer deleteByIdRequerimiento(@PathVariable Integer id_requerimiento) {
 		UsuarioActividad usuarioActividad = data.findAllByIdRequerimiento(id_requerimiento);
