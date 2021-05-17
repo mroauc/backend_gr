@@ -60,4 +60,10 @@ public class PropuestaCambioController {
 	public PropuestaCambio editar(@RequestBody PropuestaCambio propuestaCambio) {
 		return data.save(propuestaCambio);
 	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/id_proyecto/{id_proyecto}")
+	public List<PropuestaCambio> getByIdProyecto(@PathVariable Integer id_proyecto){
+		return data.findByid_proyecto(id_proyecto);
+	}
 }

@@ -14,6 +14,7 @@ public class PropuestaCambio {
 	private int id_subproyecto;
 	private String fecha_peticion;
 	private int id_usuario;
+	private int id_proyecto;
 	private String descripcion;
 	private String justificacion;
 	private String alternativas;
@@ -26,13 +27,14 @@ public class PropuestaCambio {
 		
 	}
 
-	public PropuestaCambio(int id_propuestaCambio, String nombre, int id_subproyecto, String fecha_peticion, int id_usuario,
+	public PropuestaCambio(int id_propuestaCambio, String nombre, int id_subproyecto, int id_proyecto, String fecha_peticion, int id_usuario,
 			String descripcion, String justificacion, String alternativas, String consecuencias_rechazo,
 			String fecha_resolucion, String comentarios, String estado) {
 		super();
 		this.id_propuestaCambio = id_propuestaCambio;
 		this.nombre = nombre;
 		this.id_subproyecto = id_subproyecto;
+		this.id_proyecto = id_proyecto;
 		this.fecha_peticion = fecha_peticion;
 		this.id_usuario = id_usuario;
 		this.descripcion = descripcion;
@@ -42,6 +44,14 @@ public class PropuestaCambio {
 		this.fecha_resolucion = fecha_resolucion;
 		this.comentarios = comentarios;
 		this.estado = estado;
+	}
+
+	public int getId_proyecto() {
+		return id_proyecto;
+	}
+
+	public void setId_proyecto(int id_proyecto) {
+		this.id_proyecto = id_proyecto;
 	}
 
 	public int getId_propuestaCambio() {
