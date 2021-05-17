@@ -12,4 +12,6 @@ public interface RPropuestaCambio extends CrudRepository<PropuestaCambio, Intege
 	List<PropuestaCambio> findByid_subproyecto(Integer id_subproyecto);
 	@Query("SELECT p FROM PropuestaCambio p WHERE p.id_usuario = :id_usuario")
 	List<PropuestaCambio> findByid_usuario(Integer id_usuario);
+	@Query("SELECT p FROM PropuestaCambio p WHERE p.id_proyecto = :id_proyecto")
+	List<PropuestaCambio> findByid_proyecto(Integer id_proyecto);
 }
