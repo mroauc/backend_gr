@@ -1,5 +1,6 @@
 package com.backend.demo.controlador;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,12 +20,15 @@ import com.backend.demo.modelo.Comentario;
 import com.backend.demo.modelo.ImpactoDirecto;
 import com.backend.demo.modelo.RelacionRequerimientos;
 import com.backend.demo.modelo.Requerimiento;
+import com.backend.demo.modelo.SubProyecto;
 import com.backend.demo.modelo.UsuarioActividad;
 import com.backend.demo.repositorio.RComentario;
 import com.backend.demo.repositorio.RImpactoDirecto;
 import com.backend.demo.repositorio.RPropuestaCambio;
+import com.backend.demo.repositorio.RProyecto;
 import com.backend.demo.repositorio.RRelacionRequerimientos;
 import com.backend.demo.repositorio.RRequerimiento;
+import com.backend.demo.repositorio.RSubProyecto;
 import com.backend.demo.repositorio.RUsuarioActividad;
 
 @RestController
@@ -44,7 +48,10 @@ public class RequerimientoController {
 	private RRelacionRequerimientos rRelacionRequerimiento;
 	@Autowired
 	private RUsuarioActividad rUsuarioActividad;
-	
+	@Autowired
+	private RProyecto rProyecto;
+	@Autowired
+	private RSubProyecto rSubproyecto;
 	
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ANALISTA' ,'ROLE_JEFE_PROYECTO','ROLE_LIDER_SUBPROYECTO')")
@@ -69,6 +76,21 @@ public class RequerimientoController {
 	@GetMapping("/obtener/{id_subproyecto}")
 	public List<Requerimiento> obtener(@PathVariable Integer id_subproyecto){
 		return data.findAllByid_subProyecto(id_subproyecto);
+	}
+	
+	@GetMapping("/obtenerRequerimientos/{id_subproyecto}")
+	public List<Requerimiento> obtenerTodos(@PathVariable Integer id_subproyecto){
+		Optional<SubProyecto> actual = rSubproyecto.findById(id_subproyecto);
+		List<SubProyecto> moduloos = rSubproyecto.findByid_proyecto(actual.get().getId_proyecto());
+		List<Requerimiento> listaTotal = new ArrayList<Requerimiento>();
+		List<Requerimiento> aux = new ArrayList<Requerimiento>();
+		for (SubProyecto item: moduloos) {
+			aux = data.findAllByid_subProyecto(item.getId_subProyecto());
+			for(Requerimiento itemm: aux) {
+				listaTotal.add(itemm);
+			}
+		}
+		return listaTotal;
 	}
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA','ROLE_LIDER_SUBPROYECTO')")
