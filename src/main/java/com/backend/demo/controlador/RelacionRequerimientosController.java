@@ -31,25 +31,25 @@ public class RelacionRequerimientosController {
 	@Autowired
 	private RRequerimiento repRequerimiento;
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO', 'ROLE_ANALISTA', 'ROLE_LIDER','ROLE_LIDER_SUBPROYECTO')")
 	@GetMapping("/")
 	public List<RelacionRequerimientos> index(){
 		return (List<RelacionRequerimientos>) data.findAll();
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO', 'ROLE_ANALISTA', 'ROLE_LIDER','ROLE_LIDER_SUBPROYECTO')")
 	@GetMapping("/{id}")
 	public Optional<RelacionRequerimientos> get(@PathVariable Integer id){
 		return data.findById(id);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO', 'ROLE_ANALISTA', 'ROLE_LIDER','ROLE_LIDER_SUBPROYECTO')")
 	@GetMapping("/obtener/{id_requerimiento_a}")
 	public List<RelacionRequerimientos> obtenerPertenecientes(@PathVariable Integer id_requerimiento_a){
 		return data.findAllByid_requerimiento_a(id_requerimiento_a);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO','ROLE_ANALISTA')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO', 'ROLE_ANALISTA', 'ROLE_LIDER','ROLE_LIDER_SUBPROYECTO')")
 	@GetMapping("/requerimientosAsociados/{id_requerimiento_a}")
 	public List<Requerimiento> obtenerReqPertenecientes(@PathVariable Integer id_requerimiento_a){
 		List<RelacionRequerimientos> Encontrados =  data.findAllByid_requerimiento_a(id_requerimiento_a);
@@ -67,25 +67,22 @@ public class RelacionRequerimientosController {
 		else {
 			return new ArrayList<Requerimiento>();
 		}
-		
-		
-		
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO', 'ROLE_ANALISTA', 'ROLE_LIDER','ROLE_LIDER_SUBPROYECTO')")
 	@PostMapping("/guardar")
 	public RelacionRequerimientos guardar(@RequestBody RelacionRequerimientos rr) {
 		return data.save(rr);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO', 'ROLE_ANALISTA', 'ROLE_LIDER','ROLE_LIDER_SUBPROYECTO')")
 	@DeleteMapping("/eliminar/{id}")
 	public Integer eliminar(@PathVariable Integer id) {
 		data.deleteById(id);
 		return id;
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_JEFE_PROYECTO', 'ROLE_ANALISTA', 'ROLE_LIDER','ROLE_LIDER_SUBPROYECTO')")
 	@PostMapping("/editar")
 	public RelacionRequerimientos editar(@RequestBody RelacionRequerimientos rr) {
 		return data.save(rr);

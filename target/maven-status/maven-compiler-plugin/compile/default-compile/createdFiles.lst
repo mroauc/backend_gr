@@ -4,11 +4,13 @@ com/backend/demo/security/enums/RolNombre.class
 com/backend/demo/email/EmailPort.class
 com/backend/demo/security/dto/LoginUsuario.class
 com/backend/demo/controlador/RequerimientoController.class
+com/backend/demo/repositorio/RConfiguracionRequerimiento.class
 com/backend/demo/email/EmailController.class
 com/backend/demo/controlador/ComentarioController.class
 com/backend/demo/controlador/ErroresController.class
 com/backend/demo/repositorio/RProyecto.class
 com/backend/demo/repositorio/RComentario.class
+com/backend/demo/modelo/ConfiguracionRequerimiento.class
 com/backend/demo/modelo/PropuestaCambio.class
 com/backend/demo/dto/Mensaje.class
 com/backend/demo/security/dto/JwtDto.class
@@ -29,6 +31,7 @@ com/backend/demo/repositorio/RUsuarioActividad.class
 com/backend/demo/modelo/Glosario.class
 com/backend/demo/security/jwt/JwtProvider.class
 com/backend/demo/repositorio/RPalabra.class
+com/backend/demo/controlador/ConfiguracionRequerimientoController.class
 com/backend/demo/repositorio/RImpactoDirecto.class
 com/backend/demo/util/CreateRoles.class
 com/backend/demo/controlador/GlosarioController.class

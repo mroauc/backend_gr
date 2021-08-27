@@ -7,6 +7,7 @@
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/controlador/EncargadoSubProyectoController.java
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/modelo/Palabra.java
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/email/EmailService.java
+/Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/repositorio/RConfiguracionRequerimiento.java
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/email/EmailBody.java
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/security/entity/Rol.java
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/modelo/UsuarioActividad.java
@@ -23,6 +24,7 @@
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/controlador/ProyectoEmpresaController.java
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/modelo/RelacionRequerimientos.java
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/security/dto/cambioContraseña.java
+/Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/modelo/ConfiguracionRequerimiento.java
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/modelo/Comentario.java
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/modelo/Proyecto.java
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/security/service/UsuarioService.java
@@ -64,6 +66,7 @@
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/controlador/TemplateController.java
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/security/jwt/JwtProvider.java
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/repositorio/RComentario.java
+/Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/controlador/ConfiguracionRequerimientoController.java
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/controlador/PropuestaCambioController.java
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/repositorio/RVersionAnterior.java
 /Users/rodrigovalenzuelamoya/Documents/backend_gr/src/main/java/com/backend/demo/controlador/ClienteController.java
